@@ -1,0 +1,84 @@
+---BLUEPRINTS:
+BPs_Jugador - (Movimiento, salto, salto cargado, recolectar energía, entregar energía, encender linterna, apagar linterna)
+
+BP_Núcleo - (Lugar al que llevas la energía si has recolectado previamente)
+BP_Puntos de recolección/respawn - (Lugar donde recolectas energía, solo puedes llevar una a la vez, devuelve batería)
+
+BP_Estalactitas - (Al pasar por debajo o pisar la plataforma debajo suyo, caen, hacen knockback y quitan bateria)
+BP_Cascada - (ralentizan """y quitan bateria""",""" el ruido de glitch atrae al vigilante""")
+BP_Vigia - (Foco, si te ve te glitchea y llama al vigilante: Camara)
+
+
+
+---ANIMACIONES
+
+Jugador:
+-Idle x3 ("""con alguna mini acción si estás afk""")
+-Rodar (determinar direcciones)
+-Salto 
+-Recolectar energia (determinar si pica, absorbe...): Pose fija (maybe idle) + partículas
+-Entregar energía: Pose fija (maybe idle) + partículas
+-Respawn (coger, transportar y dejar)
+-Linterna (Retroiluminación, no gasta bateria si no está a partir de un margen)
+-Recibir agua
+-Robot disfuncional 
+
+Entorno:
+-Desenganche de la estálactica y rotura al aterrizar
+-Caída del agua
+-"""Animaciones de entorno, como movimiento de las maquinas alrededor, aguas subterráneas, etc..."""
+
+
+
+Vigilante:
+-Idle
+-Movimiento (Oscilación)
+-Alertarse (escucha algo o ve algo)
+-Detección 
+
+
+
+Layout: 
+-Pantalla de control (holograma / arcade)
+
+
+
+Partículas y shaders:
+-Escudo
+-Agua y cascadas
+-Oscuridad (niebla de guerra)
+-"""Luces de los vigías"""
+
+
+
+Assets:
+-Rocas (30 variantes, algunas con marcas guía)
+-Estalagtitas 
+-Estalagmitas (5 variantes)
+-Agua y cascadas
+	-Cascada (cortina y cilindro)
+	-Corrientes de agua
+-Vigías (3 variantes, una para cada tipo de movimiento)
+-Musgo y vegetación (15 variantes)
+-Decoración  tecnológica (10 elementos) 
+-Núcleo y recolector
+-...?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
