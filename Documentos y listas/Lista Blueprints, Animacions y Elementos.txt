@@ -15,8 +15,9 @@ BP_Vigia - (Foco, si te ve te glitchea y llama al vigilante: Camara)
 ---ANIMACIONES
 
 Jugador:
--Idle x3 ("""con alguna mini acción si estás afk""")
+-Idle x2 con las patas desplegadas (con alguna mini acción de mientras)
 -Rodar (determinar direcciones)
+-Despliegue y repliegue
 -Salto 
 -Recolectar energia (determinar si pica, absorbe...): Pose fija (maybe idle) + partículas
 -Entregar energía: Pose fija (maybe idle) + partículas
