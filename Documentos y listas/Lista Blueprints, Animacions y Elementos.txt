@@ -2,12 +2,14 @@
 BPs_Jugador - (Movimiento, salto, salto cargado, recolectar energía, entregar energía, encender linterna, apagar linterna)
 
 BP_Núcleo - (Lugar al que llevas la energía si has recolectado previamente)
-BP_Puntos de recolección/respawn - (Lugar donde recolectas energía, solo puedes llevar una a la vez, devuelve batería)
+BP_Puntos de recolección/respawn - (Lugar donde recolectas energía, devuelve batería)
 
 BP_Estalactitas - (Al pasar por debajo o pisar la plataforma debajo suyo, caen, hacen knockback y quitan bateria)
-BP_Cascada - (ralentizan """y quitan bateria""",""" el ruido de glitch atrae al vigilante""")
+BP_Cascada - (ralentizan y quitan bateria, el ruido de glitch atrae al vigilante)
 BP_Vigia - (Foco, si te ve te glitchea y llama al vigilante: Camara)
-
+	-Ruta A-B
+	-Ruta A-B-C...
+	-Pensar variante con mas rango de luz, mas rapido, etc
 
 
 ---ANIMACIONES
