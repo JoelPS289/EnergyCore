@@ -1,1 +1,2 @@
 poner luz o indicacion o algo para saber que el doble salto esta cargado
+Bug, si muero por agua aparezco pero mi barra de vida no está
