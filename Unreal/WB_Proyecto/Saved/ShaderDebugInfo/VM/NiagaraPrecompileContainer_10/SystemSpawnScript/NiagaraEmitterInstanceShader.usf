@@ -374,7 +374,7 @@ cbuffer FNiagaraExternalParameters
 
 struct FParamMap0_User
 {
-	float3 Rayo_EP;
+	float3 Beam_EP;
 };
 
 struct FParamMap0_UniformRangedInt
@@ -388,9 +388,19 @@ struct FParamMap0_UniformRangedInt
 	int RandomSeed;
 };
 
+struct FParamMap0_UniformRangedFloat
+{
+	bool FixedRandomSeed;
+	float Maximum;
+	float Minimum;
+	bool OverrideRandomness;
+	bool OverrideSeed;
+	int RandomnessMode;
+	int RandomSeed;
+};
+
 struct FParamMap0_Transient
 {
-	float3 Multiply_VectorByFloatVector;
 	float PhysicsDeltaTime;
 	float PhysicsDrag;
 	float3 PhysicsForce;
@@ -431,6 +441,18 @@ struct FParamMap0_SolveForcesAndVelocity
 	float SpeedLimit;
 	float3 Velocity;
 	bool WritetoIntrinsicProperties;
+};
+
+struct FParamMap0_RandomVector
+{
+	bool ConstraintoAxis;
+	float3 ConstraintVector;
+	bool FixedRandomSeed;
+	bool OverrideRandomness;
+	bool OverrideSeed;
+	int RandomnessMode;
+	int RandomSeed;
+	float VectorScale;
 };
 
 struct FParamMap0_ParticleState
@@ -534,7 +556,6 @@ struct FParamMap0_Engine_Owner
 	float4x4 SystemLocalToWorldNoScale;
 	float4x4 SystemWorldToLocal;
 	float4x4 SystemWorldToLocalNoScale;
-	float3 SystemXAxis;
 };
 
 struct FParamMap0_Engine_Empty
@@ -609,20 +630,7 @@ struct FParamMap0_DataInstance
 	bool Alive;
 };
 
-struct FParamMap0_BreakVector
-{
-	float X;
-	float Y;
-	float Z;
-};
-
 struct FParamMap0_BeamEmitterSetup_Multiply_VectorByFloat001
-{
-	float FLOAT_VAR;
-	float3 VECTOR_VAR;
-};
-
-struct FParamMap0_BeamEmitterSetup_Multiply_VectorByFloat
 {
 	float FLOAT_VAR;
 	float3 VECTOR_VAR;
@@ -636,7 +644,6 @@ struct FParamMap0_BeamEmitterSetup
 	float3 BeamEndTangent;
 	float3 BeamStart;
 	float3 BeamStartTangent;
-	FParamMap0_BeamEmitterSetup_Multiply_VectorByFloat Multiply_VectorByFloat;
 	FParamMap0_BeamEmitterSetup_Multiply_VectorByFloat001 Multiply_VectorByFloat001;
 	bool UseBeamTangents;
 };
@@ -644,7 +651,6 @@ struct FParamMap0_BeamEmitterSetup
 struct FParamMap0
 {
 	FParamMap0_BeamEmitterSetup BeamEmitterSetup;
-	FParamMap0_BreakVector BreakVector;
 	FParamMap0_DataInstance DataInstance;
 	FParamMap0_Emitter Emitter;
 	FParamMap0_EmitterState EmitterState;
@@ -655,10 +661,12 @@ struct FParamMap0
 	FParamMap0_OUTPUT_VAR OUTPUT_VAR;
 	FParamMap0_Particles Particles;
 	FParamMap0_ParticleState ParticleState;
+	FParamMap0_RandomVector RandomVector;
 	FParamMap0_SolveForcesAndVelocity SolveForcesAndVelocity;
 	FParamMap0_SpawnBurst_Instantaneous SpawnBurst_Instantaneous;
 	FParamMap0_System System;
 	FParamMap0_Transient Transient;
+	FParamMap0_UniformRangedFloat UniformRangedFloat;
 	FParamMap0_UniformRangedInt UniformRangedInt;
 	FParamMap0_User User;
 };

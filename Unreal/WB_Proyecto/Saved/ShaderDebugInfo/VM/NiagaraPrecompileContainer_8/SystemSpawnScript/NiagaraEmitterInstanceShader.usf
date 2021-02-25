@@ -374,7 +374,7 @@ cbuffer FNiagaraExternalParameters
 
 struct FParamMap0_User
 {
-	float3 Rayo_EP;
+	float3 Beam_EP;
 };
 
 struct FParamMap0_UniformRangedInt
@@ -609,13 +609,6 @@ struct FParamMap0_DataInstance
 	bool Alive;
 };
 
-struct FParamMap0_BreakVector
-{
-	float X;
-	float Y;
-	float Z;
-};
-
 struct FParamMap0_BeamEmitterSetup_Multiply_VectorByFloat001
 {
 	float FLOAT_VAR;
@@ -644,7 +637,6 @@ struct FParamMap0_BeamEmitterSetup
 struct FParamMap0
 {
 	FParamMap0_BeamEmitterSetup BeamEmitterSetup;
-	FParamMap0_BreakVector BreakVector;
 	FParamMap0_DataInstance DataInstance;
 	FParamMap0_Emitter Emitter;
 	FParamMap0_EmitterState EmitterState;
