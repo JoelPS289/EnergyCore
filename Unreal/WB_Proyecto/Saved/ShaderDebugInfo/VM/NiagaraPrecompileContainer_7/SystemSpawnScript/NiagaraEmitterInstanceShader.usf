@@ -374,7 +374,7 @@ cbuffer FNiagaraExternalParameters
 
 struct FParamMap0_User
 {
-	float3 Beam_EP;
+	float3 Lightning_EP;
 };
 
 struct FParamMap0_UniformRangedInt

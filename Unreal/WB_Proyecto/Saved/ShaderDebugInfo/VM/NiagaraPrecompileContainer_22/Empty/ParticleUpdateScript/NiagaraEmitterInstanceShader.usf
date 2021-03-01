@@ -407,7 +407,7 @@ cbuffer FNiagaraExternalParameters
 	float Constants_Emitter_SolveForcesAndVelocity_AccelerationLimit;
 	float Constants_Emitter_JitterPosition_JitterAmount;
 	float Constants_Emitter_JitterPosition_JitterDelay;
-	float Constants_Emitter_ScaleBeamWidth_BeamWidthScale;
+	float Constants_Emitter_FloatFromCurve_ScaleCurve;
 }
 
 struct FParamMap0_Transient
@@ -526,6 +526,12 @@ struct FParamMap0_JitterPosition
 	float3 JitterOffset;
 };
 
+struct FParamMap0_FloatFromCurve
+{
+	float CurveIndex;
+	float ScaleCurve;
+};
+
 struct FParamMap0_Engine_System
 {
 	float Age;
@@ -606,15 +612,15 @@ struct FParamMap0_Constants_Emitter_SolveForcesAndVelocity
 	float SpeedLimit;
 };
 
-struct FParamMap0_Constants_Emitter_ScaleBeamWidth
-{
-	float BeamWidthScale;
-};
-
 struct FParamMap0_Constants_Emitter_JitterPosition
 {
 	float JitterAmount;
 	float JitterDelay;
+};
+
+struct FParamMap0_Constants_Emitter_FloatFromCurve
+{
+	float ScaleCurve;
 };
 
 struct FParamMap0_Constants_Emitter_CurlNoiseForce
@@ -630,8 +636,8 @@ struct FParamMap0_Constants_Emitter_CurlNoiseForce
 struct FParamMap0_Constants_Emitter
 {
 	FParamMap0_Constants_Emitter_CurlNoiseForce CurlNoiseForce;
+	FParamMap0_Constants_Emitter_FloatFromCurve FloatFromCurve;
 	FParamMap0_Constants_Emitter_JitterPosition JitterPosition;
-	FParamMap0_Constants_Emitter_ScaleBeamWidth ScaleBeamWidth;
 	FParamMap0_Constants_Emitter_SolveForcesAndVelocity SolveForcesAndVelocity;
 };
 
@@ -647,6 +653,7 @@ struct FParamMap0
 	FParamMap0_DataInstance DataInstance;
 	FParamMap0_Emitter Emitter;
 	FParamMap0_Engine Engine;
+	FParamMap0_FloatFromCurve FloatFromCurve;
 	FParamMap0_JitterPosition JitterPosition;
 	FParamMap0_Local Local;
 	FParamMap0_OUTPUT_VAR OUTPUT_VAR;
@@ -673,6 +680,8 @@ void RandomRangeFloat_Func_(float In_Min, float In_Max, int In_Seed, int In_Rand
 void RandomUnitVector_Func_(int In_Seed, int In_RandomnessMode, bool In_OverrideSeed, out float3 Out_UnitVector3D, out float2 Out_UnitVector2D, inout FSimulationContext Context);
 void RandomVector_Func_(int In_Seed, int In_RandomnessMode, bool In_OverrideSeed, out float3 Out_Vector, inout FSimulationContext Context);
 void JitterPosition_Emitter_Func_(inout FSimulationContext Context);
+void SampleCurve_EmitterBeamWidthScaleFloatCurve(float In_X, out float Out_Value);
+void FloatFromCurve_Emitter_Func_(out float Out_Value, inout FSimulationContext Context);
 void ScaleBeamWidth_Emitter_Func_(inout FSimulationContext Context);
 float GetSpawnInterpolation();
 void ParticleState_Emitter_Func_(inout FSimulationContext Context)
@@ -990,10 +999,18 @@ void JitterPosition_Emitter_Func_(inout FSimulationContext Context)
 	Context.Map.Particles.JitterDelayTimer = JitterDelayTimer_IfResult;
 }
 
+void FloatFromCurve_Emitter_Func_(out float Out_Value, inout FSimulationContext Context)
+{
+	float SampleCurve_EmitterBeamWidthScaleFloatCurveOutput_Value;
+	SampleCurve_EmitterBeamWidthScaleFloatCurve(Context.Map.FloatFromCurve.CurveIndex, SampleCurve_EmitterBeamWidthScaleFloatCurveOutput_Value);
+	float Result45 = SampleCurve_EmitterBeamWidthScaleFloatCurveOutput_Value * Context.Map.Constants.Emitter.FloatFromCurve.ScaleCurve;
+	Out_Value = Result45;
+}
+
 void ScaleBeamWidth_Emitter_Func_(inout FSimulationContext Context)
 {
-	float Result45 = Context.Map.Constants.Emitter.ScaleBeamWidth.BeamWidthScale * Context.Map.Particles.Initial.RibbonWidth;
-	Context.Map.Particles.RibbonWidth = Result45;
+	float Result46 = Context.Map.ScaleBeamWidth.BeamWidthScale * Context.Map.Particles.Initial.RibbonWidth;
+	Context.Map.Particles.RibbonWidth = Result46;
 }
 
 float GetSpawnInterpolation()
@@ -1076,6 +1093,10 @@ void Simulate(inout FSimulationContext Context)
 	EnterStatScope(4 );
 	JitterPosition_Emitter_Func_(Context);
 	ExitStatScope( );
+	Context.Map.FloatFromCurve.CurveIndex = Context.Map.Particles.NormalizedAge;
+	float FloatFromCurve_Emitter_Func_Output_Value;
+	FloatFromCurve_Emitter_Func_(FloatFromCurve_Emitter_Func_Output_Value, Context);
+	Context.Map.ScaleBeamWidth.BeamWidthScale = FloatFromCurve_Emitter_Func_Output_Value;
 	EnterStatScope(5 );
 	ScaleBeamWidth_Emitter_Func_(Context);
 	ExitStatScope( );
@@ -1143,7 +1164,7 @@ EnterStatScope(6 );
 	Context.Map.Engine.System.TickCount = Engine_System_TickCount;
 	Context.Map.Constants.Emitter.JitterPosition.JitterAmount = Constants_Emitter_JitterPosition_JitterAmount;
 	Context.Map.Constants.Emitter.JitterPosition.JitterDelay = Constants_Emitter_JitterPosition_JitterDelay;
-	Context.Map.Constants.Emitter.ScaleBeamWidth.BeamWidthScale = Constants_Emitter_ScaleBeamWidth_BeamWidthScale;
+	Context.Map.Constants.Emitter.FloatFromCurve.ScaleCurve = Constants_Emitter_FloatFromCurve_ScaleCurve;
 	Context.Map.Engine.Emitter.TotalSpawnedParticles = Engine_Emitter_TotalSpawnedParticles;
 	ReadDataSets(Context);
 	Simulate(Context);

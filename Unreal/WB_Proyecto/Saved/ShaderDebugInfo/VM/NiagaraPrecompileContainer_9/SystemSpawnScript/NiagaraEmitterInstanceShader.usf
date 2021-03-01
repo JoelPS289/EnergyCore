@@ -374,7 +374,7 @@ cbuffer FNiagaraExternalParameters
 
 struct FParamMap0_User
 {
-	float3 Beam_EP;
+	float3 Lightning_EP;
 };
 
 struct FParamMap0_UniformRangedInt
@@ -382,6 +382,17 @@ struct FParamMap0_UniformRangedInt
 	bool FixedRandomSeed;
 	int Maximum;
 	int Minimum;
+	bool OverrideRandomness;
+	bool OverrideSeed;
+	int RandomnessMode;
+	int RandomSeed;
+};
+
+struct FParamMap0_UniformRangedFloat
+{
+	bool FixedRandomSeed;
+	float Maximum;
+	float Minimum;
 	bool OverrideRandomness;
 	bool OverrideSeed;
 	int RandomnessMode;
@@ -655,6 +666,7 @@ struct FParamMap0
 	FParamMap0_SpawnBurst_Instantaneous SpawnBurst_Instantaneous;
 	FParamMap0_System System;
 	FParamMap0_Transient Transient;
+	FParamMap0_UniformRangedFloat UniformRangedFloat;
 	FParamMap0_UniformRangedInt UniformRangedInt;
 	FParamMap0_User User;
 };
