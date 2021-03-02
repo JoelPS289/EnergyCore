@@ -372,11 +372,65 @@ cbuffer FNiagaraExternalParameters
 	int Emitter_RandomSeed;
 }
 
+struct FParamMap0_Vector2DFromFloat
+{
+	float Value;
+};
+
+struct FParamMap0_User
+{
+	float3 Lightning_EP;
+};
+
 struct FParamMap0_UniformRangedInt
 {
 	bool FixedRandomSeed;
 	int Maximum;
 	int Minimum;
+	bool OverrideRandomness;
+	bool OverrideSeed;
+	int RandomnessMode;
+	int RandomSeed;
+};
+
+struct FParamMap0_UniformRangedFloat003
+{
+	bool FixedRandomSeed;
+	float Maximum;
+	float Minimum;
+	bool OverrideRandomness;
+	bool OverrideSeed;
+	int RandomnessMode;
+	int RandomSeed;
+};
+
+struct FParamMap0_UniformRangedFloat002
+{
+	bool FixedRandomSeed;
+	float Maximum;
+	float Minimum;
+	bool OverrideRandomness;
+	bool OverrideSeed;
+	int RandomnessMode;
+	int RandomSeed;
+};
+
+struct FParamMap0_UniformRangedFloat001
+{
+	bool FixedRandomSeed;
+	float Maximum;
+	float Minimum;
+	bool OverrideRandomness;
+	bool OverrideSeed;
+	int RandomnessMode;
+	int RandomSeed;
+};
+
+struct FParamMap0_UniformRangedFloat
+{
+	bool FixedRandomSeed;
+	float Maximum;
+	float Minimum;
 	bool OverrideRandomness;
 	bool OverrideSeed;
 	int RandomnessMode;
@@ -414,6 +468,11 @@ struct FParamMap0_SpawnBurst_Instantaneous
 	float SpawnTime;
 };
 
+struct FParamMap0_SpawnBeam
+{
+	float SplinePositionErrorThreshold;
+};
+
 struct FParamMap0_SolveForcesAndVelocity
 {
 	float AccelerationLimit;
@@ -427,22 +486,65 @@ struct FParamMap0_SolveForcesAndVelocity
 	bool WritetoIntrinsicProperties;
 };
 
+struct FParamMap0_ScaleBeamWidth
+{
+	float BeamWidthScale;
+};
+
+struct FParamMap0_RandomVector001
+{
+	bool ConstraintoAxis;
+	float3 ConstraintVector;
+	bool FixedRandomSeed;
+	bool OverrideRandomness;
+	bool OverrideSeed;
+	int RandomnessMode;
+	int RandomSeed;
+	float VectorScale;
+};
+
+struct FParamMap0_RandomVector
+{
+	bool ConstraintoAxis;
+	float3 ConstraintVector;
+	bool FixedRandomSeed;
+	bool OverrideRandomness;
+	bool OverrideSeed;
+	int RandomnessMode;
+	int RandomSeed;
+	float VectorScale;
+};
+
 struct FParamMap0_ParticleState
 {
 	float DeltaTime;
 	float Lifetime;
 };
 
+struct FParamMap0_Particles_Initial
+{
+	float RibbonWidth;
+};
+
 struct FParamMap0_Particles
 {
 	float Age;
+	float3 BeamSplineBinormal;
+	float3 BeamSplineNormal;
+	float3 BeamSplineTangent;
 	float4 Color;
+	FParamMap0_Particles_Initial Initial;
+	float JitterDelayTimer;
 	float Lifetime;
 	float Mass;
 	float MaterialRandom;
 	float NormalizedAge;
 	float3 Position;
 	float3 PreviousVelocity;
+	NiagaraID RibbonID;
+	float RibbonLinkOrder;
+	float RibbonTwist;
+	float RibbonWidth;
 	float3 Scale;
 	float SpriteRotation;
 	float2 SpriteSize;
@@ -469,11 +571,24 @@ struct FParamMap0_OUTPUT_VAR
 	FParamMap0_OUTPUT_VAR_SolveForcesAndVelocity SolveForcesAndVelocity;
 };
 
+struct FParamMap0_Local_SpawnBeam
+{
+	float3 BeamDirection;
+	float3 BeamVector;
+	float NormalizedExecIndex;
+	float StartEndVecLength;
+};
+
 struct FParamMap0_Local_SolveForcesAndVelocity
 {
 	float DeltaTime;
 	float Mass;
 	float3 PhysicsForce;
+};
+
+struct FParamMap0_Local_JitterPosition
+{
+	float3 ModuleJitterOffset;
 };
 
 struct FParamMap0_Local_EmitterState
@@ -484,10 +599,39 @@ struct FParamMap0_Local_EmitterState
 	int PreviousEmitterState;
 };
 
+struct FParamMap0_Local_CurlNoiseForce
+{
+	float AgeAdvancement;
+	float DeterministicOffset;
+	float Falloff;
+	float3 SampledNoise;
+	float3 SamplePosition;
+};
+
+struct FParamMap0_Local_BeamEmitterSetup
+{
+	float3 BeamEnd;
+	float3 BeamEndTangent;
+	float3 BeamStart;
+	float BeamStartEndLength;
+	float3 BeamStartTangent;
+};
+
 struct FParamMap0_Local
 {
+	FParamMap0_Local_BeamEmitterSetup BeamEmitterSetup;
+	FParamMap0_Local_CurlNoiseForce CurlNoiseForce;
 	FParamMap0_Local_EmitterState EmitterState;
+	FParamMap0_Local_JitterPosition JitterPosition;
 	FParamMap0_Local_SolveForcesAndVelocity SolveForcesAndVelocity;
+	FParamMap0_Local_SpawnBeam SpawnBeam;
+};
+
+struct FParamMap0_JitterPosition
+{
+	float JitterAmount;
+	float JitterDelay;
+	float3 JitterOffset;
 };
 
 struct FParamMap0_InitializeParticle
@@ -510,10 +654,20 @@ struct FParamMap0_InitializeParticle
 	bool WriteSpriteSize;
 };
 
+struct FParamMap0_FloatFromCurve
+{
+	float CurveIndex;
+	float ScaleCurve;
+};
+
 struct FParamMap0_Engine_Owner
 {
 	float LODDistanceFraction;
 	float3 Position;
+	float4x4 SystemLocalToWorld;
+	float4x4 SystemLocalToWorldNoScale;
+	float4x4 SystemWorldToLocal;
+	float4x4 SystemWorldToLocalNoScale;
 };
 
 struct FParamMap0_Engine_Empty
@@ -532,6 +686,7 @@ struct FParamMap0_Engine
 	float DeltaTime;
 	FParamMap0_Engine_Emitter Emitter;
 	FParamMap0_Engine_Empty Empty;
+	int ExecutionCount;
 	float InverseDeltaTime;
 	FParamMap0_Engine_Owner Owner;
 	float RealTime;
@@ -551,6 +706,14 @@ struct FParamMap0_Empty_Scalability
 struct FParamMap0_Empty
 {
 	float Age;
+	float3 BeamDirection;
+	float3 BeamEnd;
+	float3 BeamEndTangent;
+	int BeamID;
+	float3 BeamStart;
+	float BeamStartEndLength;
+	float3 BeamStartTangent;
+	float3 BeamVector;
 	float CurrentLoopDuration;
 	int ExecutionState;
 	int ExecutionStateSource;
@@ -560,6 +723,7 @@ struct FParamMap0_Empty
 	float NormalizedLoopAge;
 	FParamMap0_Empty_Scalability Scalability;
 	FParamMap0_Empty_SpawnBurst_Instantaneous SpawnBurst_Instantaneous;
+	bool UseBeamTangents;
 };
 
 struct FParamMap0_EmitterState
@@ -579,23 +743,67 @@ struct FParamMap0_DataInstance
 	bool Alive;
 };
 
+struct FParamMap0_CurlNoiseForce
+{
+	float CurlNoiseConeMaskAngle;
+	float3 CurlNoiseConeMaskAxis;
+	float CurlNoiseConeMaskFalloffAngle;
+	float NoiseFrequency;
+	float NoiseStrength;
+	float3 PanNoiseField;
+	int RandomSeed;
+	float3 SamplePosition;
+};
+
+struct FParamMap0_BeamWidth
+{
+	float BeamTwistAmount;
+	float BeamWidth;
+};
+
+struct FParamMap0_BeamEmitterSetup
+{
+	bool AbsoluteEndTangent;
+	bool AbsoluteStartTangent;
+	float3 BeamEnd;
+	float3 BeamEndTangent;
+	float3 BeamStart;
+	float3 BeamStartTangent;
+	bool UseBeamTangents;
+};
+
 struct FParamMap0
 {
+	FParamMap0_BeamEmitterSetup BeamEmitterSetup;
+	FParamMap0_BeamWidth BeamWidth;
+	FParamMap0_CurlNoiseForce CurlNoiseForce;
 	FParamMap0_DataInstance DataInstance;
 	FParamMap0_Emitter Emitter;
 	FParamMap0_EmitterState EmitterState;
 	FParamMap0_Empty Empty;
 	FParamMap0_Engine Engine;
+	FParamMap0_FloatFromCurve FloatFromCurve;
 	FParamMap0_InitializeParticle InitializeParticle;
+	FParamMap0_JitterPosition JitterPosition;
 	FParamMap0_Local Local;
 	FParamMap0_OUTPUT_VAR OUTPUT_VAR;
 	FParamMap0_Particles Particles;
 	FParamMap0_ParticleState ParticleState;
+	FParamMap0_RandomVector RandomVector;
+	FParamMap0_RandomVector001 RandomVector001;
+	FParamMap0_ScaleBeamWidth ScaleBeamWidth;
 	FParamMap0_SolveForcesAndVelocity SolveForcesAndVelocity;
+	FParamMap0_SpawnBeam SpawnBeam;
 	FParamMap0_SpawnBurst_Instantaneous SpawnBurst_Instantaneous;
 	FParamMap0_System System;
 	FParamMap0_Transient Transient;
+	FParamMap0_UniformRangedFloat UniformRangedFloat;
+	FParamMap0_UniformRangedFloat001 UniformRangedFloat001;
+	FParamMap0_UniformRangedFloat002 UniformRangedFloat002;
+	FParamMap0_UniformRangedFloat003 UniformRangedFloat003;
 	FParamMap0_UniformRangedInt UniformRangedInt;
+	FParamMap0_User User;
+	FParamMap0_Vector2DFromFloat Vector2DFromFloat;
 };
 
 struct FSimulationContext
@@ -652,18 +860,36 @@ void Simulate(inout FSimulationContext Context)
 	Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst = Constant10;
 	bool Constant11 = false;
 	Context.Map.Empty.LocalSpace = Constant11;
-	float Constant12 = 0;
-	Context.Map.System.Age = Constant12;
-	float Constant13 = 0;
-	Context.Map.System.CurrentLoopDuration = Constant13;
-	float Constant14 = 0;
-	Context.Map.System.LoopedAge = Constant14;
-	int Constant15 = 0;
-	Context.Map.System.LoopCount = Constant15;
-	float Constant16 = (0.0);
-	Context.Map.System.NormalizedLoopAge = Constant16;
-	bool Constant17 = false;
-	Context.Map.System.bCompleteOnInactive = Constant17;
+	float3 Constant12 = float3(0.0, 0.0, 0.0);
+	Context.Map.Empty.BeamStart = Constant12;
+	float3 Constant13 = float3(0.0, 0.0, 0.0);
+	Context.Map.Empty.BeamStartTangent = Constant13;
+	float3 Constant14 = float3(0.0, 0.0, 0.0);
+	Context.Map.Empty.BeamEnd = Constant14;
+	float3 Constant15 = float3(0.0, 0.0, 0.0);
+	Context.Map.Empty.BeamEndTangent = Constant15;
+	bool Constant16 = (false);
+	Context.Map.Empty.UseBeamTangents = Constant16;
+	float Constant17 = (0.0);
+	Context.Map.Empty.BeamStartEndLength = Constant17;
+	float3 Constant18 = float3(0.0, 0.0, 0.0);
+	Context.Map.Empty.BeamVector = Constant18;
+	float3 Constant19 = float3(0.0, 0.0, 0.0);
+	Context.Map.Empty.BeamDirection = Constant19;
+	int Constant20 = -1;
+	Context.Map.Empty.BeamID = Constant20;
+	float Constant21 = 0;
+	Context.Map.System.Age = Constant21;
+	float Constant22 = 0;
+	Context.Map.System.CurrentLoopDuration = Constant22;
+	float Constant23 = 0;
+	Context.Map.System.LoopedAge = Constant23;
+	int Constant24 = 0;
+	Context.Map.System.LoopCount = Constant24;
+	float Constant25 = (0.0);
+	Context.Map.System.NormalizedLoopAge = Constant25;
+	bool Constant26 = false;
+	Context.Map.System.bCompleteOnInactive = Constant26;
 
 	EnterStatScope(1 );
 	Empty_Func_(Context);
@@ -681,6 +907,26 @@ EnterStatScope(2 );
 	FSimulationContext Context = (FSimulationContext)0;
 	Context.Map.Emitter.RandomSeed = 0;
 	Context.Map.Empty.Age = 0.0f;
+	Context.Map.Empty.BeamDirection.x = 0.0f;
+	Context.Map.Empty.BeamDirection.y = 0.0f;
+	Context.Map.Empty.BeamDirection.z = 0.0f;
+	Context.Map.Empty.BeamEnd.x = 0.0f;
+	Context.Map.Empty.BeamEnd.y = 0.0f;
+	Context.Map.Empty.BeamEnd.z = 0.0f;
+	Context.Map.Empty.BeamEndTangent.x = 0.0f;
+	Context.Map.Empty.BeamEndTangent.y = 0.0f;
+	Context.Map.Empty.BeamEndTangent.z = 0.0f;
+	Context.Map.Empty.BeamID = 0;
+	Context.Map.Empty.BeamStart.x = 0.0f;
+	Context.Map.Empty.BeamStart.y = 0.0f;
+	Context.Map.Empty.BeamStart.z = 0.0f;
+	Context.Map.Empty.BeamStartEndLength = 0.0f;
+	Context.Map.Empty.BeamStartTangent.x = 0.0f;
+	Context.Map.Empty.BeamStartTangent.y = 0.0f;
+	Context.Map.Empty.BeamStartTangent.z = 0.0f;
+	Context.Map.Empty.BeamVector.x = 0.0f;
+	Context.Map.Empty.BeamVector.y = 0.0f;
+	Context.Map.Empty.BeamVector.z = 0.0f;
 	Context.Map.Empty.CurrentLoopDuration = 0.0f;
 	Context.Map.Empty.ExecutionState = 0;
 	Context.Map.Empty.ExecutionStateSource = 0;
@@ -693,6 +939,7 @@ EnterStatScope(2 );
 	Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.InterpStartDt = 0.0f;
 	Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt = 0.0f;
 	Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup = 0;
+	Context.Map.Empty.UseBeamTangents = false;
 	Context.Map.System.Age = 0.0f;
 	Context.Map.System.bCompleteOnInactive = false;
 	Context.Map.System.CurrentLoopDuration = 0.0f;
@@ -710,26 +957,47 @@ EnterStatScope(2 );
 	int TmpWriteIndex = OutputIndex(0, false, true);
 	OutputDataInt(0, 0, TmpWriteIndex, Context.Map.Emitter.RandomSeed);
 	OutputDataFloat(0, 1, TmpWriteIndex, Context.Map.Empty.Age);
-	OutputDataFloat(0, 2, TmpWriteIndex, Context.Map.Empty.CurrentLoopDuration);
-	OutputDataInt(0, 3, TmpWriteIndex, Context.Map.Empty.ExecutionState);
-	OutputDataInt(0, 4, TmpWriteIndex, Context.Map.Empty.ExecutionStateSource);
-	OutputDataBool(0, 5, TmpWriteIndex, Context.Map.Empty.LocalSpace);
-	OutputDataInt(0, 6, TmpWriteIndex, Context.Map.Empty.LoopCount);
-	OutputDataFloat(0, 7, TmpWriteIndex, Context.Map.Empty.LoopedAge);
-	OutputDataFloat(0, 8, TmpWriteIndex, Context.Map.Empty.NormalizedLoopAge);
-	OutputDataFloat(0, 9, TmpWriteIndex, Context.Map.Empty.Scalability.DistanceFraction);
-	OutputDataInt(0, 10, TmpWriteIndex, Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.Count);
-	OutputDataFloat(0, 11, TmpWriteIndex, Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.InterpStartDt);
-	OutputDataFloat(0, 12, TmpWriteIndex, Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt);
-	OutputDataInt(0, 13, TmpWriteIndex, Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup);
-	OutputDataFloat(0, 14, TmpWriteIndex, Context.Map.System.Age);
-	OutputDataBool(0, 15, TmpWriteIndex, Context.Map.System.bCompleteOnInactive);
-	OutputDataFloat(0, 16, TmpWriteIndex, Context.Map.System.CurrentLoopDuration);
-	OutputDataInt(0, 17, TmpWriteIndex, Context.Map.System.ExecutionState);
-	OutputDataInt(0, 18, TmpWriteIndex, Context.Map.System.ExecutionStateSource);
-	OutputDataInt(0, 19, TmpWriteIndex, Context.Map.System.LoopCount);
-	OutputDataFloat(0, 20, TmpWriteIndex, Context.Map.System.LoopedAge);
-	OutputDataFloat(0, 21, TmpWriteIndex, Context.Map.System.NormalizedLoopAge);
+	OutputDataFloat(0, 2, TmpWriteIndex, Context.Map.Empty.BeamDirection.x);
+	OutputDataFloat(0, 3, TmpWriteIndex, Context.Map.Empty.BeamDirection.y);
+	OutputDataFloat(0, 4, TmpWriteIndex, Context.Map.Empty.BeamDirection.z);
+	OutputDataFloat(0, 5, TmpWriteIndex, Context.Map.Empty.BeamEnd.x);
+	OutputDataFloat(0, 6, TmpWriteIndex, Context.Map.Empty.BeamEnd.y);
+	OutputDataFloat(0, 7, TmpWriteIndex, Context.Map.Empty.BeamEnd.z);
+	OutputDataFloat(0, 8, TmpWriteIndex, Context.Map.Empty.BeamEndTangent.x);
+	OutputDataFloat(0, 9, TmpWriteIndex, Context.Map.Empty.BeamEndTangent.y);
+	OutputDataFloat(0, 10, TmpWriteIndex, Context.Map.Empty.BeamEndTangent.z);
+	OutputDataInt(0, 11, TmpWriteIndex, Context.Map.Empty.BeamID);
+	OutputDataFloat(0, 12, TmpWriteIndex, Context.Map.Empty.BeamStart.x);
+	OutputDataFloat(0, 13, TmpWriteIndex, Context.Map.Empty.BeamStart.y);
+	OutputDataFloat(0, 14, TmpWriteIndex, Context.Map.Empty.BeamStart.z);
+	OutputDataFloat(0, 15, TmpWriteIndex, Context.Map.Empty.BeamStartEndLength);
+	OutputDataFloat(0, 16, TmpWriteIndex, Context.Map.Empty.BeamStartTangent.x);
+	OutputDataFloat(0, 17, TmpWriteIndex, Context.Map.Empty.BeamStartTangent.y);
+	OutputDataFloat(0, 18, TmpWriteIndex, Context.Map.Empty.BeamStartTangent.z);
+	OutputDataFloat(0, 19, TmpWriteIndex, Context.Map.Empty.BeamVector.x);
+	OutputDataFloat(0, 20, TmpWriteIndex, Context.Map.Empty.BeamVector.y);
+	OutputDataFloat(0, 21, TmpWriteIndex, Context.Map.Empty.BeamVector.z);
+	OutputDataFloat(0, 22, TmpWriteIndex, Context.Map.Empty.CurrentLoopDuration);
+	OutputDataInt(0, 23, TmpWriteIndex, Context.Map.Empty.ExecutionState);
+	OutputDataInt(0, 24, TmpWriteIndex, Context.Map.Empty.ExecutionStateSource);
+	OutputDataBool(0, 25, TmpWriteIndex, Context.Map.Empty.LocalSpace);
+	OutputDataInt(0, 26, TmpWriteIndex, Context.Map.Empty.LoopCount);
+	OutputDataFloat(0, 27, TmpWriteIndex, Context.Map.Empty.LoopedAge);
+	OutputDataFloat(0, 28, TmpWriteIndex, Context.Map.Empty.NormalizedLoopAge);
+	OutputDataFloat(0, 29, TmpWriteIndex, Context.Map.Empty.Scalability.DistanceFraction);
+	OutputDataInt(0, 30, TmpWriteIndex, Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.Count);
+	OutputDataFloat(0, 31, TmpWriteIndex, Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.InterpStartDt);
+	OutputDataFloat(0, 32, TmpWriteIndex, Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt);
+	OutputDataInt(0, 33, TmpWriteIndex, Context.Map.Empty.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup);
+	OutputDataBool(0, 34, TmpWriteIndex, Context.Map.Empty.UseBeamTangents);
+	OutputDataFloat(0, 35, TmpWriteIndex, Context.Map.System.Age);
+	OutputDataBool(0, 36, TmpWriteIndex, Context.Map.System.bCompleteOnInactive);
+	OutputDataFloat(0, 37, TmpWriteIndex, Context.Map.System.CurrentLoopDuration);
+	OutputDataInt(0, 38, TmpWriteIndex, Context.Map.System.ExecutionState);
+	OutputDataInt(0, 39, TmpWriteIndex, Context.Map.System.ExecutionStateSource);
+	OutputDataInt(0, 40, TmpWriteIndex, Context.Map.System.LoopCount);
+	OutputDataFloat(0, 41, TmpWriteIndex, Context.Map.System.LoopedAge);
+	OutputDataFloat(0, 42, TmpWriteIndex, Context.Map.System.NormalizedLoopAge);
 	}
 ExitStatScope( );
 }

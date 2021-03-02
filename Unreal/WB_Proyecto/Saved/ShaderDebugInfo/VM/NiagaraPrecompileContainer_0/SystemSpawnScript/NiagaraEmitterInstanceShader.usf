@@ -379,8 +379,7 @@ struct FParamMap0_Vector2DFromFloat
 
 struct FParamMap0_User
 {
-	float3 Beam_EP;
-	float MaxLifeTime;
+	float3 Lightning_EP;
 };
 
 struct FParamMap0_UniformRangedInt
@@ -756,13 +755,6 @@ struct FParamMap0_CurlNoiseForce
 	float3 SamplePosition;
 };
 
-struct FParamMap0_BreakVector
-{
-	float X;
-	float Y;
-	float Z;
-};
-
 struct FParamMap0_BeamWidth
 {
 	float BeamTwistAmount;
@@ -784,7 +776,6 @@ struct FParamMap0
 {
 	FParamMap0_BeamEmitterSetup BeamEmitterSetup;
 	FParamMap0_BeamWidth BeamWidth;
-	FParamMap0_BreakVector BreakVector;
 	FParamMap0_CurlNoiseForce CurlNoiseForce;
 	FParamMap0_DataInstance DataInstance;
 	FParamMap0_Emitter Emitter;
