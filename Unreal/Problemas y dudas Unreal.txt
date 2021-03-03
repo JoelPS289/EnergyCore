@@ -1,5 +1,4 @@
 poner luz o indicacion o algo para saber que el doble salto esta cargado
 
 Ajustar la iluminacion, poner luces guia
-El vigia chupa energia con rayos (partículas dirigidas) y te glitchea
 Ajustar la cámara y sus limites
