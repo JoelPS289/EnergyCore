@@ -1,0 +1,23 @@
+Organizarse
+Github del projecte complet
+1er pla: Roques generiques que no afecten al gameplay, escala no importa pero intentar que 
+capiguin be
+
+2n pla: Vegetació, dividida en 2 parts, vegetació humida y vegetació seca.
+
+3r pla: Basura espacial. Assets que no tenen que veure amb les ruines a nivell de disseny
+
+4t pla: Estructures de les ruines, no naturals. Pedestals portals, etc.
+
+5é pla: Estructures naturals, estalactites estalagmites, estructures grans etc. 
+
+6é pla: Shaders: d'aigua, cascades, efectes de llum, boira etc.
+
+Plataformes minijoc: Assets unics del minijoc, no ficar blueprints. Model 3d amb textures del
+personatge. Si fem servir alguna textura unica tilejable al nostre minijoc ficar una esfera amb
+aquesta textura.
+Grup principal ficar coses interactuables.
+
+Farem diferents tipus d'iluminacions en aquest nivell.
+
+  
