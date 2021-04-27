@@ -1,4 +1,2 @@
-poner luz o indicacion o algo para saber que el doble salto esta cargado
-
-Ajustar la iluminacion, poner luces guia
-Ajustar la cámara y sus limites
+arreglar bug respawn (si cojes checkpoint no hace respawn)
+arreglar distancia luz linterna (la mid i max hacen casi la misma potencia)
