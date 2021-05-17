@@ -377,6 +377,11 @@ struct FParamMap0_Vector2DFromFloat
 	float Value;
 };
 
+struct FParamMap0_User
+{
+	float3 Lightning_EndPoint;
+};
+
 struct FParamMap0_UniformRangedVector001
 {
 	bool FixedRandomSeed;
@@ -530,39 +535,6 @@ struct FParamMap0_RandomVector
 	int RandomnessMode;
 	int RandomSeed;
 	float VectorScale;
-};
-
-struct FParamMap0_Peque_SpawnBurst_Instantaneous
-{
-	NiagaraSpawnInfo SpawnBurst;
-};
-
-struct FParamMap0_Peque_Scalability
-{
-	float DistanceFraction;
-};
-
-struct FParamMap0_Peque
-{
-	float Age;
-	float3 BeamDirection;
-	float3 BeamEnd;
-	float3 BeamEndTangent;
-	int BeamID;
-	float3 BeamStart;
-	float BeamStartEndLength;
-	float3 BeamStartTangent;
-	float3 BeamVector;
-	float CurrentLoopDuration;
-	int ExecutionState;
-	int ExecutionStateSource;
-	bool LocalSpace;
-	int LoopCount;
-	float LoopedAge;
-	float NormalizedLoopAge;
-	FParamMap0_Peque_Scalability Scalability;
-	FParamMap0_Peque_SpawnBurst_Instantaneous SpawnBurst_Instantaneous;
-	bool UseBeamTangents;
 };
 
 struct FParamMap0_ParticleState
@@ -743,12 +715,6 @@ struct FParamMap0_FloatFromCurve
 	float ScaleCurve;
 };
 
-struct FParamMap0_Engine_Peque
-{
-	int NumParticles;
-	float SpawnCountScale;
-};
-
 struct FParamMap0_Engine_Owner
 {
 	float LODDistanceFraction;
@@ -785,7 +751,6 @@ struct FParamMap0_Engine
 	FParamMap0_Engine_Grande Grande;
 	float InverseDeltaTime;
 	FParamMap0_Engine_Owner Owner;
-	FParamMap0_Engine_Peque Peque;
 	float RealTime;
 	float Time;
 };
@@ -887,7 +852,6 @@ struct FParamMap0
 	FParamMap0_OUTPUT_VAR OUTPUT_VAR;
 	FParamMap0_Particles Particles;
 	FParamMap0_ParticleState ParticleState;
-	FParamMap0_Peque Peque;
 	FParamMap0_RandomVector RandomVector;
 	FParamMap0_RandomVector001 RandomVector001;
 	FParamMap0_ScaleBeamWidth ScaleBeamWidth;
@@ -903,6 +867,7 @@ struct FParamMap0
 	FParamMap0_UniformRangedInt UniformRangedInt;
 	FParamMap0_UniformRangedVector UniformRangedVector;
 	FParamMap0_UniformRangedVector001 UniformRangedVector001;
+	FParamMap0_User User;
 	FParamMap0_Vector2DFromFloat Vector2DFromFloat;
 };
 
@@ -914,7 +879,6 @@ struct FSimulationContext
 static float HackSpawnInterp = 1.0;
 void Central_Func_(inout FSimulationContext Context);
 void Grande_Func_(inout FSimulationContext Context);
-void Peque_Func_(inout FSimulationContext Context);
 float GetSpawnInterpolation();
 void Central_Func_(inout FSimulationContext Context)
 {
@@ -922,11 +886,6 @@ void Central_Func_(inout FSimulationContext Context)
 }
 
 void Grande_Func_(inout FSimulationContext Context)
-{
-
-}
-
-void Peque_Func_(inout FSimulationContext Context)
 {
 
 }
@@ -1028,65 +987,24 @@ void Simulate(inout FSimulationContext Context)
 	Context.Map.Grande.BeamDirection = Constant38;
 	int Constant39 = -1;
 	Context.Map.Grande.BeamID = Constant39;
-	int Constant40 = 0;
-	Context.Map.Peque.ExecutionState = Constant40;
+	float Constant40 = 0;
+	Context.Map.System.Age = Constant40;
 	float Constant41 = 0;
-	Context.Map.Peque.Age = Constant41;
+	Context.Map.System.CurrentLoopDuration = Constant41;
 	float Constant42 = 0;
-	Context.Map.Peque.CurrentLoopDuration = Constant42;
-	float Constant43 = 0;
-	Context.Map.Peque.LoopedAge = Constant43;
-	int Constant44 = 0;
-	Context.Map.Peque.LoopCount = Constant44;
-	float Constant45 = (0.0);
-	Context.Map.Peque.NormalizedLoopAge = Constant45;
-	float Constant46 = (0.0);
-	Context.Map.Peque.Scalability.DistanceFraction = Constant46;
-	int Constant47 = 0;
-	Context.Map.Peque.ExecutionStateSource = Constant47;
-	NiagaraSpawnInfo Constant48 = (NiagaraSpawnInfo)0;
-	Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst = Constant48;
-	bool Constant49 = false;
-	Context.Map.Peque.LocalSpace = Constant49;
-	float3 Constant50 = float3(0.0, 0.0, 0.0);
-	Context.Map.Peque.BeamStart = Constant50;
-	float3 Constant51 = float3(0.0, 0.0, 0.0);
-	Context.Map.Peque.BeamStartTangent = Constant51;
-	float3 Constant52 = float3(0.0, 0.0, 0.0);
-	Context.Map.Peque.BeamEnd = Constant52;
-	float3 Constant53 = float3(0.0, 0.0, 0.0);
-	Context.Map.Peque.BeamEndTangent = Constant53;
-	bool Constant54 = (false);
-	Context.Map.Peque.UseBeamTangents = Constant54;
-	float Constant55 = (0.0);
-	Context.Map.Peque.BeamStartEndLength = Constant55;
-	float3 Constant56 = float3(0.0, 0.0, 0.0);
-	Context.Map.Peque.BeamVector = Constant56;
-	float3 Constant57 = float3(0.0, 0.0, 0.0);
-	Context.Map.Peque.BeamDirection = Constant57;
-	int Constant58 = -1;
-	Context.Map.Peque.BeamID = Constant58;
-	float Constant59 = 0;
-	Context.Map.System.Age = Constant59;
-	float Constant60 = 0;
-	Context.Map.System.CurrentLoopDuration = Constant60;
-	float Constant61 = 0;
-	Context.Map.System.LoopedAge = Constant61;
-	int Constant62 = 0;
-	Context.Map.System.LoopCount = Constant62;
-	float Constant63 = (0.0);
-	Context.Map.System.NormalizedLoopAge = Constant63;
-	bool Constant64 = false;
-	Context.Map.System.bCompleteOnInactive = Constant64;
+	Context.Map.System.LoopedAge = Constant42;
+	int Constant43 = 0;
+	Context.Map.System.LoopCount = Constant43;
+	float Constant44 = (0.0);
+	Context.Map.System.NormalizedLoopAge = Constant44;
+	bool Constant45 = false;
+	Context.Map.System.bCompleteOnInactive = Constant45;
 
 	EnterStatScope(1 );
 	Central_Func_(Context);
 	ExitStatScope( );
 	EnterStatScope(2 );
 	Grande_Func_(Context);
-	ExitStatScope( );
-	EnterStatScope(3 );
-	Peque_Func_(Context);
 	ExitStatScope( );
 
 
@@ -1096,7 +1014,7 @@ void Simulate(inout FSimulationContext Context)
 }
 void SimulateMain()
 {
-EnterStatScope(4 );
+EnterStatScope(3 );
 
 	FSimulationContext Context = (FSimulationContext)0;
 	Context.Map.Central.Age = 0.0f;
@@ -1168,40 +1086,6 @@ EnterStatScope(4 );
 	Context.Map.Grande.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt = 0.0f;
 	Context.Map.Grande.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup = 0;
 	Context.Map.Grande.UseBeamTangents = false;
-	Context.Map.Peque.Age = 0.0f;
-	Context.Map.Peque.BeamDirection.x = 0.0f;
-	Context.Map.Peque.BeamDirection.y = 0.0f;
-	Context.Map.Peque.BeamDirection.z = 0.0f;
-	Context.Map.Peque.BeamEnd.x = 0.0f;
-	Context.Map.Peque.BeamEnd.y = 0.0f;
-	Context.Map.Peque.BeamEnd.z = 0.0f;
-	Context.Map.Peque.BeamEndTangent.x = 0.0f;
-	Context.Map.Peque.BeamEndTangent.y = 0.0f;
-	Context.Map.Peque.BeamEndTangent.z = 0.0f;
-	Context.Map.Peque.BeamID = 0;
-	Context.Map.Peque.BeamStart.x = 0.0f;
-	Context.Map.Peque.BeamStart.y = 0.0f;
-	Context.Map.Peque.BeamStart.z = 0.0f;
-	Context.Map.Peque.BeamStartEndLength = 0.0f;
-	Context.Map.Peque.BeamStartTangent.x = 0.0f;
-	Context.Map.Peque.BeamStartTangent.y = 0.0f;
-	Context.Map.Peque.BeamStartTangent.z = 0.0f;
-	Context.Map.Peque.BeamVector.x = 0.0f;
-	Context.Map.Peque.BeamVector.y = 0.0f;
-	Context.Map.Peque.BeamVector.z = 0.0f;
-	Context.Map.Peque.CurrentLoopDuration = 0.0f;
-	Context.Map.Peque.ExecutionState = 0;
-	Context.Map.Peque.ExecutionStateSource = 0;
-	Context.Map.Peque.LocalSpace = false;
-	Context.Map.Peque.LoopCount = 0;
-	Context.Map.Peque.LoopedAge = 0.0f;
-	Context.Map.Peque.NormalizedLoopAge = 0.0f;
-	Context.Map.Peque.Scalability.DistanceFraction = 0.0f;
-	Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.Count = 0;
-	Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.InterpStartDt = 0.0f;
-	Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt = 0.0f;
-	Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup = 0;
-	Context.Map.Peque.UseBeamTangents = false;
 	Context.Map.System.Age = 0.0f;
 	Context.Map.System.bCompleteOnInactive = false;
 	Context.Map.System.CurrentLoopDuration = 0.0f;
@@ -1286,48 +1170,14 @@ EnterStatScope(4 );
 	OutputDataFloat(0, 66, TmpWriteIndex, Context.Map.Grande.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt);
 	OutputDataInt(0, 67, TmpWriteIndex, Context.Map.Grande.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup);
 	OutputDataBool(0, 68, TmpWriteIndex, Context.Map.Grande.UseBeamTangents);
-	OutputDataFloat(0, 69, TmpWriteIndex, Context.Map.Peque.Age);
-	OutputDataFloat(0, 70, TmpWriteIndex, Context.Map.Peque.BeamDirection.x);
-	OutputDataFloat(0, 71, TmpWriteIndex, Context.Map.Peque.BeamDirection.y);
-	OutputDataFloat(0, 72, TmpWriteIndex, Context.Map.Peque.BeamDirection.z);
-	OutputDataFloat(0, 73, TmpWriteIndex, Context.Map.Peque.BeamEnd.x);
-	OutputDataFloat(0, 74, TmpWriteIndex, Context.Map.Peque.BeamEnd.y);
-	OutputDataFloat(0, 75, TmpWriteIndex, Context.Map.Peque.BeamEnd.z);
-	OutputDataFloat(0, 76, TmpWriteIndex, Context.Map.Peque.BeamEndTangent.x);
-	OutputDataFloat(0, 77, TmpWriteIndex, Context.Map.Peque.BeamEndTangent.y);
-	OutputDataFloat(0, 78, TmpWriteIndex, Context.Map.Peque.BeamEndTangent.z);
-	OutputDataInt(0, 79, TmpWriteIndex, Context.Map.Peque.BeamID);
-	OutputDataFloat(0, 80, TmpWriteIndex, Context.Map.Peque.BeamStart.x);
-	OutputDataFloat(0, 81, TmpWriteIndex, Context.Map.Peque.BeamStart.y);
-	OutputDataFloat(0, 82, TmpWriteIndex, Context.Map.Peque.BeamStart.z);
-	OutputDataFloat(0, 83, TmpWriteIndex, Context.Map.Peque.BeamStartEndLength);
-	OutputDataFloat(0, 84, TmpWriteIndex, Context.Map.Peque.BeamStartTangent.x);
-	OutputDataFloat(0, 85, TmpWriteIndex, Context.Map.Peque.BeamStartTangent.y);
-	OutputDataFloat(0, 86, TmpWriteIndex, Context.Map.Peque.BeamStartTangent.z);
-	OutputDataFloat(0, 87, TmpWriteIndex, Context.Map.Peque.BeamVector.x);
-	OutputDataFloat(0, 88, TmpWriteIndex, Context.Map.Peque.BeamVector.y);
-	OutputDataFloat(0, 89, TmpWriteIndex, Context.Map.Peque.BeamVector.z);
-	OutputDataFloat(0, 90, TmpWriteIndex, Context.Map.Peque.CurrentLoopDuration);
-	OutputDataInt(0, 91, TmpWriteIndex, Context.Map.Peque.ExecutionState);
-	OutputDataInt(0, 92, TmpWriteIndex, Context.Map.Peque.ExecutionStateSource);
-	OutputDataBool(0, 93, TmpWriteIndex, Context.Map.Peque.LocalSpace);
-	OutputDataInt(0, 94, TmpWriteIndex, Context.Map.Peque.LoopCount);
-	OutputDataFloat(0, 95, TmpWriteIndex, Context.Map.Peque.LoopedAge);
-	OutputDataFloat(0, 96, TmpWriteIndex, Context.Map.Peque.NormalizedLoopAge);
-	OutputDataFloat(0, 97, TmpWriteIndex, Context.Map.Peque.Scalability.DistanceFraction);
-	OutputDataInt(0, 98, TmpWriteIndex, Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.Count);
-	OutputDataFloat(0, 99, TmpWriteIndex, Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.InterpStartDt);
-	OutputDataFloat(0, 100, TmpWriteIndex, Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt);
-	OutputDataInt(0, 101, TmpWriteIndex, Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup);
-	OutputDataBool(0, 102, TmpWriteIndex, Context.Map.Peque.UseBeamTangents);
-	OutputDataFloat(0, 103, TmpWriteIndex, Context.Map.System.Age);
-	OutputDataBool(0, 104, TmpWriteIndex, Context.Map.System.bCompleteOnInactive);
-	OutputDataFloat(0, 105, TmpWriteIndex, Context.Map.System.CurrentLoopDuration);
-	OutputDataInt(0, 106, TmpWriteIndex, Context.Map.System.ExecutionState);
-	OutputDataInt(0, 107, TmpWriteIndex, Context.Map.System.ExecutionStateSource);
-	OutputDataInt(0, 108, TmpWriteIndex, Context.Map.System.LoopCount);
-	OutputDataFloat(0, 109, TmpWriteIndex, Context.Map.System.LoopedAge);
-	OutputDataFloat(0, 110, TmpWriteIndex, Context.Map.System.NormalizedLoopAge);
+	OutputDataFloat(0, 69, TmpWriteIndex, Context.Map.System.Age);
+	OutputDataBool(0, 70, TmpWriteIndex, Context.Map.System.bCompleteOnInactive);
+	OutputDataFloat(0, 71, TmpWriteIndex, Context.Map.System.CurrentLoopDuration);
+	OutputDataInt(0, 72, TmpWriteIndex, Context.Map.System.ExecutionState);
+	OutputDataInt(0, 73, TmpWriteIndex, Context.Map.System.ExecutionStateSource);
+	OutputDataInt(0, 74, TmpWriteIndex, Context.Map.System.LoopCount);
+	OutputDataFloat(0, 75, TmpWriteIndex, Context.Map.System.LoopedAge);
+	OutputDataFloat(0, 76, TmpWriteIndex, Context.Map.System.NormalizedLoopAge);
 	}
 ExitStatScope( );
 }

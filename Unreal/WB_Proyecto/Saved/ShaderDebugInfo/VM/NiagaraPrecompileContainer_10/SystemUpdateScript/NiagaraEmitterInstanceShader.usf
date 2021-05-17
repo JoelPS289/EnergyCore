@@ -420,30 +420,6 @@ cbuffer FNiagaraExternalParameters
 	int Constants_Grande_RandomVector_RandomSeed;
 	float3 Constants_Grande_RandomVector001_ConstraintVector;
 	int Constants_Grande_RandomVector001_RandomSeed;
-	float3 Constants_Grande_UniformRangedVector_Minimum;
-	float3 Constants_Grande_UniformRangedVector_Maximum;
-	int Constants_Grande_UniformRangedVector_RandomSeed;
-	float Constants_Peque_EmitterState_LoopDuration;
-	float Constants_Peque_EmitterState_LoopDelay;
-	int Constants_Peque_UniformRangedInt_Minimum;
-	int Constants_Peque_UniformRangedInt_Maximum;
-	int Constants_Peque_UniformRangedInt_RandomSeed;
-	float Constants_Peque_SpawnBurst_Instantaneous_SpawnTime;
-	int Constants_Peque_SpawnBurst_Instantaneous_SpawnGroup;
-	float Constants_Peque_SpawnBurst_Instantaneous_SpawnProbability;
-	float Constants_Peque_UniformRangedFloat001_Minimum;
-	float Constants_Peque_UniformRangedFloat001_Maximum;
-	int Constants_Peque_UniformRangedFloat001_RandomSeed;
-	float Constants_Peque_UniformRangedFloat002_Minimum;
-	float Constants_Peque_UniformRangedFloat002_Maximum;
-	int Constants_Peque_UniformRangedFloat002_RandomSeed;
-	float3 Constants_Peque_RandomVector_ConstraintVector;
-	int Constants_Peque_RandomVector_RandomSeed;
-	float3 Constants_Peque_RandomVector001_ConstraintVector;
-	int Constants_Peque_RandomVector001_RandomSeed;
-	float3 Constants_Peque_UniformRangedVector_Minimum;
-	float3 Constants_Peque_UniformRangedVector_Maximum;
-	int Constants_Peque_UniformRangedVector_RandomSeed;
 	int Emitter_RandomSeed;
 }
 
@@ -460,6 +436,7 @@ struct FParamMap0_User_Central
 struct FParamMap0_User
 {
 	FParamMap0_User_Central Central;
+	float3 Lightning_EndPoint;
 };
 
 struct FParamMap0_UniformRangedVector001
@@ -623,39 +600,6 @@ struct FParamMap0_RandomVector
 	int RandomnessMode;
 	int RandomSeed;
 	float VectorScale;
-};
-
-struct FParamMap0_Peque_SpawnBurst_Instantaneous
-{
-	NiagaraSpawnInfo SpawnBurst;
-};
-
-struct FParamMap0_Peque_Scalability
-{
-	float DistanceFraction;
-};
-
-struct FParamMap0_Peque
-{
-	float Age;
-	float3 BeamDirection;
-	float3 BeamEnd;
-	float3 BeamEndTangent;
-	int BeamID;
-	float3 BeamStart;
-	float BeamStartEndLength;
-	float3 BeamStartTangent;
-	float3 BeamVector;
-	float CurrentLoopDuration;
-	int ExecutionState;
-	int ExecutionStateSource;
-	bool LocalSpace;
-	int LoopCount;
-	float LoopedAge;
-	float NormalizedLoopAge;
-	FParamMap0_Peque_Scalability Scalability;
-	FParamMap0_Peque_SpawnBurst_Instantaneous SpawnBurst_Instantaneous;
-	bool UseBeamTangents;
 };
 
 struct FParamMap0_ParticleState
@@ -847,12 +791,6 @@ struct FParamMap0_Engine_System
 	int TickCount;
 };
 
-struct FParamMap0_Engine_Peque
-{
-	int NumParticles;
-	float SpawnCountScale;
-};
-
 struct FParamMap0_Engine_Owner
 {
 	int ExecutionState;
@@ -890,7 +828,6 @@ struct FParamMap0_Engine
 	FParamMap0_Engine_Grande Grande;
 	float InverseDeltaTime;
 	FParamMap0_Engine_Owner Owner;
-	FParamMap0_Engine_Peque Peque;
 	float RealTime;
 	FParamMap0_Engine_System System;
 	float Time;
@@ -929,78 +866,6 @@ struct FParamMap0_Constants_SystemState
 {
 	float LoopDelay;
 	float LoopDuration;
-};
-
-struct FParamMap0_Constants_Peque_UniformRangedVector
-{
-	float3 Maximum;
-	float3 Minimum;
-	int RandomSeed;
-};
-
-struct FParamMap0_Constants_Peque_UniformRangedInt
-{
-	int Maximum;
-	int Minimum;
-	int RandomSeed;
-};
-
-struct FParamMap0_Constants_Peque_UniformRangedFloat002
-{
-	float Maximum;
-	float Minimum;
-	int RandomSeed;
-};
-
-struct FParamMap0_Constants_Peque_UniformRangedFloat001
-{
-	float Maximum;
-	float Minimum;
-	int RandomSeed;
-};
-
-struct FParamMap0_Constants_Peque_SpawnBurst_Instantaneous
-{
-	int SpawnGroup;
-	float SpawnProbability;
-	float SpawnTime;
-};
-
-struct FParamMap0_Constants_Peque_RandomVector001
-{
-	float3 ConstraintVector;
-	int RandomSeed;
-};
-
-struct FParamMap0_Constants_Peque_RandomVector
-{
-	float3 ConstraintVector;
-	int RandomSeed;
-};
-
-struct FParamMap0_Constants_Peque_EmitterState
-{
-	float LoopDelay;
-	float LoopDuration;
-};
-
-struct FParamMap0_Constants_Peque
-{
-	FParamMap0_Constants_Peque_EmitterState EmitterState;
-	FParamMap0_Constants_Peque_RandomVector RandomVector;
-	FParamMap0_Constants_Peque_RandomVector001 RandomVector001;
-	FParamMap0_Constants_Peque_SpawnBurst_Instantaneous SpawnBurst_Instantaneous;
-	FParamMap0_Constants_Peque_UniformRangedFloat001 UniformRangedFloat001;
-	FParamMap0_Constants_Peque_UniformRangedFloat002 UniformRangedFloat002;
-	FParamMap0_Constants_Peque_UniformRangedInt UniformRangedInt;
-	FParamMap0_Constants_Peque_UniformRangedVector UniformRangedVector;
-};
-
-struct FParamMap0_Constants_Grande_UniformRangedVector
-{
-	float3 Maximum;
-	float3 Minimum;
-	int RandomSeed;
 };
 
 struct FParamMap0_Constants_Grande_UniformRangedInt
@@ -1058,7 +923,6 @@ struct FParamMap0_Constants_Grande
 	FParamMap0_Constants_Grande_UniformRangedFloat001 UniformRangedFloat001;
 	FParamMap0_Constants_Grande_UniformRangedFloat002 UniformRangedFloat002;
 	FParamMap0_Constants_Grande_UniformRangedInt UniformRangedInt;
-	FParamMap0_Constants_Grande_UniformRangedVector UniformRangedVector;
 };
 
 struct FParamMap0_Constants_Central_UniformRangedVector001
@@ -1138,7 +1002,6 @@ struct FParamMap0_Constants
 {
 	FParamMap0_Constants_Central Central;
 	FParamMap0_Constants_Grande Grande;
-	FParamMap0_Constants_Peque Peque;
 	FParamMap0_Constants_SystemState SystemState;
 };
 
@@ -1211,7 +1074,6 @@ struct FParamMap0
 	FParamMap0_OUTPUT_VAR OUTPUT_VAR;
 	FParamMap0_Particles Particles;
 	FParamMap0_ParticleState ParticleState;
-	FParamMap0_Peque Peque;
 	FParamMap0_RandomVector RandomVector;
 	FParamMap0_RandomVector001 RandomVector001;
 	FParamMap0_ScaleBeamWidth ScaleBeamWidth;
@@ -1280,26 +1142,9 @@ void RandomVector_NF_TransformVector_Grande_Func_(float3 In_InVector, int In_Sou
 void RandomVector_Grande_Func_(out float3 Out_RandomVector, inout FSimulationContext Context);
 void RandomVector001_NF_TransformVector_Grande_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context);
 void RandomVector001_Grande_Func_(out float3 Out_RandomVector, inout FSimulationContext Context);
-void UniformRangedVector_Grande_Func_(out float3 Out_UniformRangedVector, inout FSimulationContext Context);
-void BeamEmitterSetup_NF_TransformVector_Grande_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context);
+void BeamEmitterSetup_SimulationPosition_Grande_Func_(out float3 Out_SimulationPosition, inout FSimulationContext Context);
 void BeamEmitterSetup_Grande_Func_(inout FSimulationContext Context);
 void Grande_Func_(inout FSimulationContext Context);
-void EmitterState_EmitterChangeState002_Peque_Func_(int In_NewState, bool In_Condition, int In_NewStateSource, inout FSimulationContext Context);
-void EmitterState_EmitterChangeState005_Peque_Func_(int In_NewState, bool In_Condition, int In_NewStateSource, inout FSimulationContext Context);
-void EmitterState_EmitterChangeState003_Peque_Func_(int In_NewState, bool In_Condition, int In_NewStateSource, inout FSimulationContext Context);
-void EmitterState_Peque_Func_(inout FSimulationContext Context);
-void UniformRangedInt_Peque_Func_(out int Out_UniformRangedInt, inout FSimulationContext Context);
-void SpawnBurst_Instantaneous_Peque_Func_(inout FSimulationContext Context);
-void UniformRangedFloat001_Peque_Func_(out float Out_UniformRangedFloat, inout FSimulationContext Context);
-void UniformRangedFloat002_Peque_Func_(out float Out_UniformRangedFloat, inout FSimulationContext Context);
-void RandomVector_NF_TransformVector_Peque_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context);
-void RandomVector_Peque_Func_(out float3 Out_RandomVector, inout FSimulationContext Context);
-void RandomVector001_NF_TransformVector_Peque_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context);
-void RandomVector001_Peque_Func_(out float3 Out_RandomVector, inout FSimulationContext Context);
-void UniformRangedVector_Peque_Func_(out float3 Out_UniformRangedVector, inout FSimulationContext Context);
-void BeamEmitterSetup_NF_TransformVector_Peque_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context);
-void BeamEmitterSetup_Peque_Func_(inout FSimulationContext Context);
-void Peque_Func_(inout FSimulationContext Context);
 float GetSpawnInterpolation();
 void SystemState_SystemChangeState002_Func_(int In_NewState, bool In_Condition, int In_NewStateSource, inout FSimulationContext Context)
 {
@@ -2775,7 +2620,7 @@ void UniformRangedFloat002_Grande_Func_(out float Out_UniformRangedFloat, inout 
 
 void RandomVector_NF_TransformVector_Grande_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context)
 {
-	bool Constant218 = true;
+	bool Constant217 = true;
 	float4x4 Matrix_IfResult4;
 	float4x4 Matrix001_IfResult3;
 	if(In_ApplyScale)
@@ -2790,7 +2635,7 @@ void RandomVector_NF_TransformVector_Grande_Func_(float3 In_InVector, int In_Sou
 	}
 	bool TransformBase_Func_Output_bUseOriginal3;
 	float4x4 TransformBase_Func_Output_OutTransform3;
-	TransformBase_Func_(In_SourceSpace, In_DestinationSpace, Matrix_IfResult4, Matrix001_IfResult3, Constant218, TransformBase_Func_Output_bUseOriginal3, TransformBase_Func_Output_OutTransform3, Context);
+	TransformBase_Func_(In_SourceSpace, In_DestinationSpace, Matrix_IfResult4, Matrix001_IfResult3, Constant217, TransformBase_Func_Output_bUseOriginal3, TransformBase_Func_Output_OutTransform3, Context);
 	float3 Result202 = mul(float4(In_InVector,0.0),TransformBase_Func_Output_OutTransform3).xyz;
 	float3 Vector_IfResult9;
 	if(TransformBase_Func_Output_bUseOriginal3)
@@ -2806,23 +2651,23 @@ void RandomVector_NF_TransformVector_Grande_Func_(float3 In_InVector, int In_Sou
 
 void RandomVector_Grande_Func_(out float3 Out_RandomVector, inout FSimulationContext Context)
 {
-	bool Constant214 = false;
-	Context.Map.RandomVector.ConstraintoAxis = Constant214;
-	int Constant215 = 2;
-	int Constant216 = 0;
-	bool Constant217 = false;
+	bool Constant213 = false;
+	Context.Map.RandomVector.ConstraintoAxis = Constant213;
+	int Constant214 = 2;
+	int Constant215 = 0;
+	bool Constant216 = false;
 	float3 RandomVector_NF_TransformVector_Grande_Func_Output_OutVector;
-	RandomVector_NF_TransformVector_Grande_Func_(Context.Map.Constants.Grande.RandomVector.ConstraintVector, Constant215, Constant216, Constant217, RandomVector_NF_TransformVector_Grande_Func_Output_OutVector, Context);
-	bool Constant219 = false;
-	Context.Map.RandomVector.OverrideRandomness = Constant219;
-	int Constant220 = 0;
-	Context.Map.RandomVector.RandomnessMode = Constant220;
+	RandomVector_NF_TransformVector_Grande_Func_(Context.Map.Constants.Grande.RandomVector.ConstraintVector, Constant214, Constant215, Constant216, RandomVector_NF_TransformVector_Grande_Func_Output_OutVector, Context);
+	bool Constant218 = false;
+	Context.Map.RandomVector.OverrideRandomness = Constant218;
+	int Constant219 = 0;
+	Context.Map.RandomVector.RandomnessMode = Constant219;
+	bool Constant220 = false;
+	Context.Map.RandomVector.OverrideSeed = Constant220;
 	bool Constant221 = false;
-	Context.Map.RandomVector.OverrideSeed = Constant221;
-	bool Constant222 = false;
-	Context.Map.RandomVector.FixedRandomSeed = Constant222;
-	int Constant223 = 0;
-	bool Constant224 = false;
+	Context.Map.RandomVector.FixedRandomSeed = Constant221;
+	int Constant222 = 0;
+	bool Constant223 = false;
 	int Mode_IfResult10;
 	bool Override_IfResult10;
 	if(Context.Map.RandomVector.OverrideRandomness)
@@ -2832,8 +2677,8 @@ void RandomVector_Grande_Func_(out float3 Out_RandomVector, inout FSimulationCon
 	}
 	else
 	{
-	Mode_IfResult10 = Constant223;
-	Override_IfResult10 = Constant224;
+	Mode_IfResult10 = Constant222;
+	Override_IfResult10 = Constant223;
 	}
 	float3 RandomUnitVector_Func_Output_UnitVector3D2;
 	float2 RandomUnitVector_Func_Output_UnitVector2D2;
@@ -2856,7 +2701,7 @@ void RandomVector_Grande_Func_(out float3 Out_RandomVector, inout FSimulationCon
 
 void RandomVector001_NF_TransformVector_Grande_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context)
 {
-	bool Constant229 = true;
+	bool Constant228 = true;
 	float4x4 Matrix_IfResult5;
 	float4x4 Matrix001_IfResult4;
 	if(In_ApplyScale)
@@ -2871,7 +2716,7 @@ void RandomVector001_NF_TransformVector_Grande_Func_(float3 In_InVector, int In_
 	}
 	bool TransformBase_Func_Output_bUseOriginal4;
 	float4x4 TransformBase_Func_Output_OutTransform4;
-	TransformBase_Func_(In_SourceSpace, In_DestinationSpace, Matrix_IfResult5, Matrix001_IfResult4, Constant229, TransformBase_Func_Output_bUseOriginal4, TransformBase_Func_Output_OutTransform4, Context);
+	TransformBase_Func_(In_SourceSpace, In_DestinationSpace, Matrix_IfResult5, Matrix001_IfResult4, Constant228, TransformBase_Func_Output_bUseOriginal4, TransformBase_Func_Output_OutTransform4, Context);
 	float3 Result207 = mul(float4(In_InVector,0.0),TransformBase_Func_Output_OutTransform4).xyz;
 	float3 Vector_IfResult11;
 	if(TransformBase_Func_Output_bUseOriginal4)
@@ -2887,23 +2732,23 @@ void RandomVector001_NF_TransformVector_Grande_Func_(float3 In_InVector, int In_
 
 void RandomVector001_Grande_Func_(out float3 Out_RandomVector, inout FSimulationContext Context)
 {
-	bool Constant225 = false;
-	Context.Map.RandomVector001.ConstraintoAxis = Constant225;
-	int Constant226 = 2;
-	int Constant227 = 0;
-	bool Constant228 = false;
+	bool Constant224 = false;
+	Context.Map.RandomVector001.ConstraintoAxis = Constant224;
+	int Constant225 = 2;
+	int Constant226 = 0;
+	bool Constant227 = false;
 	float3 RandomVector001_NF_TransformVector_Grande_Func_Output_OutVector;
-	RandomVector001_NF_TransformVector_Grande_Func_(Context.Map.Constants.Grande.RandomVector001.ConstraintVector, Constant226, Constant227, Constant228, RandomVector001_NF_TransformVector_Grande_Func_Output_OutVector, Context);
-	bool Constant230 = false;
-	Context.Map.RandomVector001.OverrideRandomness = Constant230;
-	int Constant231 = 0;
-	Context.Map.RandomVector001.RandomnessMode = Constant231;
+	RandomVector001_NF_TransformVector_Grande_Func_(Context.Map.Constants.Grande.RandomVector001.ConstraintVector, Constant225, Constant226, Constant227, RandomVector001_NF_TransformVector_Grande_Func_Output_OutVector, Context);
+	bool Constant229 = false;
+	Context.Map.RandomVector001.OverrideRandomness = Constant229;
+	int Constant230 = 0;
+	Context.Map.RandomVector001.RandomnessMode = Constant230;
+	bool Constant231 = false;
+	Context.Map.RandomVector001.OverrideSeed = Constant231;
 	bool Constant232 = false;
-	Context.Map.RandomVector001.OverrideSeed = Constant232;
-	bool Constant233 = false;
-	Context.Map.RandomVector001.FixedRandomSeed = Constant233;
-	int Constant234 = 0;
-	bool Constant235 = false;
+	Context.Map.RandomVector001.FixedRandomSeed = Constant232;
+	int Constant233 = 0;
+	bool Constant234 = false;
 	int Mode_IfResult11;
 	bool Override_IfResult11;
 	if(Context.Map.RandomVector001.OverrideRandomness)
@@ -2913,8 +2758,8 @@ void RandomVector001_Grande_Func_(out float3 Out_RandomVector, inout FSimulation
 	}
 	else
 	{
-	Mode_IfResult11 = Constant234;
-	Override_IfResult11 = Constant235;
+	Mode_IfResult11 = Constant233;
+	Override_IfResult11 = Constant234;
 	}
 	float3 RandomUnitVector_Func_Output_UnitVector3D3;
 	float2 RandomUnitVector_Func_Output_UnitVector2D3;
@@ -2935,89 +2780,42 @@ void RandomVector001_Grande_Func_(out float3 Out_RandomVector, inout FSimulation
 	Out_RandomVector = Result211;
 }
 
-void UniformRangedVector_Grande_Func_(out float3 Out_UniformRangedVector, inout FSimulationContext Context)
+void BeamEmitterSetup_SimulationPosition_Grande_Func_(out float3 Out_SimulationPosition, inout FSimulationContext Context)
 {
-	bool Constant236 = false;
-	Context.Map.UniformRangedVector.OverrideRandomness = Constant236;
-	int Constant237 = 0;
-	Context.Map.UniformRangedVector.RandomnessMode = Constant237;
-	bool Constant238 = false;
-	Context.Map.UniformRangedVector.OverrideSeed = Constant238;
-	bool Constant239 = false;
-	Context.Map.UniformRangedVector.FixedRandomSeed = Constant239;
-	int Constant240 = 0;
-	bool Constant241 = false;
-	int Mode_IfResult12;
-	bool Override_IfResult12;
-	if(Context.Map.UniformRangedVector.OverrideRandomness)
-	{
-	Mode_IfResult12 = Context.Map.UniformRangedVector.RandomnessMode;
-	Override_IfResult12 = Context.Map.UniformRangedVector.OverrideSeed;
-	}
-	else
-	{
-	Mode_IfResult12 = Constant240;
-	Override_IfResult12 = Constant241;
-	}
-	float3 RandomRangeFloat_Func_Output_Result8;
-	RandomRangeFloat_Func_(Context.Map.Constants.Grande.UniformRangedVector.Minimum, Context.Map.Constants.Grande.UniformRangedVector.Maximum, Context.Map.Constants.Grande.UniformRangedVector.RandomSeed, Mode_IfResult12, Override_IfResult12, Context.Map.UniformRangedVector.FixedRandomSeed, RandomRangeFloat_Func_Output_Result8, Context);
-	Out_UniformRangedVector = RandomRangeFloat_Func_Output_Result8;
-}
-
-void BeamEmitterSetup_NF_TransformVector_Grande_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context)
-{
-	bool Constant248 = true;
-	float4x4 Matrix_IfResult6;
-	float4x4 Matrix001_IfResult5;
-	if(In_ApplyScale)
-	{
-	Matrix_IfResult6 = Context.Map.Engine.Owner.SystemLocalToWorld;
-	Matrix001_IfResult5 = Context.Map.Engine.Owner.SystemWorldToLocal;
-	}
-	else
-	{
-	Matrix_IfResult6 = Context.Map.Engine.Owner.SystemLocalToWorldNoScale;
-	Matrix001_IfResult5 = Context.Map.Engine.Owner.SystemWorldToLocalNoScale;
-	}
-	bool TransformBase_Func_Output_bUseOriginal5;
-	float4x4 TransformBase_Func_Output_OutTransform5;
-	TransformBase_Func_(In_SourceSpace, In_DestinationSpace, Matrix_IfResult6, Matrix001_IfResult5, Constant248, TransformBase_Func_Output_bUseOriginal5, TransformBase_Func_Output_OutTransform5, Context);
-	float3 Result213 = mul(float4(In_InVector,0.0),TransformBase_Func_Output_OutTransform5).xyz;
+	bool Constant235 = true;
+	float3 Constant236 = float3(0,0,0);
 	float3 Vector_IfResult13;
-	if(TransformBase_Func_Output_bUseOriginal5)
+	if(Constant235)
 	{
-	Vector_IfResult13 = In_InVector;
+	Vector_IfResult13 = Constant236;
 	}
 	else
 	{
-	Vector_IfResult13 = Result213;
+	Vector_IfResult13 = Context.Map.Engine.Owner.Position;
 	}
-	Out_OutVector = Vector_IfResult13;
+	Out_SimulationPosition = Vector_IfResult13;
 }
 
 void BeamEmitterSetup_Grande_Func_(inout FSimulationContext Context)
 {
+	float3 BeamEmitterSetup_SimulationPosition_Grande_Func_Output_SimulationPosition;
+	BeamEmitterSetup_SimulationPosition_Grande_Func_(BeamEmitterSetup_SimulationPosition_Grande_Func_Output_SimulationPosition, Context);
+	Context.Map.BeamEmitterSetup.BeamStart = BeamEmitterSetup_SimulationPosition_Grande_Func_Output_SimulationPosition;
 	float3 Result212 = Context.Map.BeamEmitterSetup.BeamStart - Context.Map.BeamEmitterSetup.BeamEnd;
-	float3 Constant242 = float3(0,0,1);
-	float Constant243 = 1e-05;
-	float Constant244 = 1;
+	float3 Constant237 = float3(0,0,1);
+	float Constant238 = 1e-05;
+	float Constant239 = 1;
 	float3 DirectionAndLengthSafe_Func_Output_Direction2;
 	float DirectionAndLengthSafe_Func_Output_Length2;
 	bool DirectionAndLengthSafe_Func_Output_BelowThreshold2;
-	DirectionAndLengthSafe_Func_(Result212, Constant242, Constant243, Constant244, DirectionAndLengthSafe_Func_Output_Direction2, DirectionAndLengthSafe_Func_Output_Length2, DirectionAndLengthSafe_Func_Output_BelowThreshold2, Context);
-	int Constant245 = 2;
-	int Constant246 = 0;
-	bool Constant247 = false;
-	float3 BeamEmitterSetup_NF_TransformVector_Grande_Func_Output_OutVector;
-	BeamEmitterSetup_NF_TransformVector_Grande_Func_(Context.Map.BeamEmitterSetup.BeamEnd, Constant245, Constant246, Constant247, BeamEmitterSetup_NF_TransformVector_Grande_Func_Output_OutVector, Context);
-	float3 Result214 = Context.Map.BeamEmitterSetup.BeamStart + BeamEmitterSetup_NF_TransformVector_Grande_Func_Output_OutVector;
+	DirectionAndLengthSafe_Func_(Result212, Constant237, Constant238, Constant239, DirectionAndLengthSafe_Func_Output_Direction2, DirectionAndLengthSafe_Func_Output_Length2, DirectionAndLengthSafe_Func_Output_BelowThreshold2, Context);
 	Context.Map.Local.BeamEmitterSetup.BeamStart = Context.Map.BeamEmitterSetup.BeamStart;
 	Context.Map.Local.BeamEmitterSetup.BeamStartEndLength = DirectionAndLengthSafe_Func_Output_Length2;
-	Context.Map.Local.BeamEmitterSetup.BeamEnd = Result214;
-	bool Constant249 = false;
-	Context.Map.BeamEmitterSetup.AbsoluteStartTangent = Constant249;
-	float3 Result215 = Context.Map.BeamEmitterSetup.BeamStartTangent * Context.Map.Local.BeamEmitterSetup.BeamStartEndLength;
-	float3 Result216 = Context.Map.Local.BeamEmitterSetup.BeamStart + Result215;
+	Context.Map.Local.BeamEmitterSetup.BeamEnd = Context.Map.BeamEmitterSetup.BeamEnd;
+	bool Constant240 = false;
+	Context.Map.BeamEmitterSetup.AbsoluteStartTangent = Constant240;
+	float3 Result213 = Context.Map.BeamEmitterSetup.BeamStartTangent * Context.Map.Local.BeamEmitterSetup.BeamStartEndLength;
+	float3 Result214 = Context.Map.Local.BeamEmitterSetup.BeamStart + Result213;
 	float3 Vector_IfResult14;
 	if(Context.Map.BeamEmitterSetup.AbsoluteStartTangent)
 	{
@@ -3025,12 +2823,12 @@ void BeamEmitterSetup_Grande_Func_(inout FSimulationContext Context)
 	}
 	else
 	{
-	Vector_IfResult14 = Result216;
+	Vector_IfResult14 = Result214;
 	}
-	bool Constant250 = false;
-	Context.Map.BeamEmitterSetup.AbsoluteEndTangent = Constant250;
-	float3 Result217 = Context.Map.Local.BeamEmitterSetup.BeamStartEndLength * Context.Map.BeamEmitterSetup.BeamEndTangent;
-	float3 Result218 = Result217 + Context.Map.Local.BeamEmitterSetup.BeamEnd;
+	bool Constant241 = false;
+	Context.Map.BeamEmitterSetup.AbsoluteEndTangent = Constant241;
+	float3 Result215 = Context.Map.Local.BeamEmitterSetup.BeamStartEndLength * Context.Map.BeamEmitterSetup.BeamEndTangent;
+	float3 Result216 = Result215 + Context.Map.Local.BeamEmitterSetup.BeamEnd;
 	float3 Vector_IfResult15;
 	if(Context.Map.BeamEmitterSetup.AbsoluteEndTangent)
 	{
@@ -3038,36 +2836,36 @@ void BeamEmitterSetup_Grande_Func_(inout FSimulationContext Context)
 	}
 	else
 	{
-	Vector_IfResult15 = Result218;
+	Vector_IfResult15 = Result216;
 	}
 	Context.Map.Local.BeamEmitterSetup.BeamStartTangent = Vector_IfResult14;
 	Context.Map.Local.BeamEmitterSetup.BeamEndTangent = Vector_IfResult15;
-	float3 Result219 = Context.Map.Local.BeamEmitterSetup.BeamEnd - Context.Map.Local.BeamEmitterSetup.BeamStart;
-	float3 Constant251 = float3(0,0,1);
-	float Constant252 = 1e-05;
-	float Constant253 = 1;
+	float3 Result217 = Context.Map.Local.BeamEmitterSetup.BeamEnd - Context.Map.Local.BeamEmitterSetup.BeamStart;
+	float3 Constant242 = float3(0,0,1);
+	float Constant243 = 1e-05;
+	float Constant244 = 1;
 	float3 DirectionAndLengthSafe_Func_Output_Direction3;
 	float DirectionAndLengthSafe_Func_Output_Length3;
 	bool DirectionAndLengthSafe_Func_Output_BelowThreshold3;
-	DirectionAndLengthSafe_Func_(Result219, Constant251, Constant252, Constant253, DirectionAndLengthSafe_Func_Output_Direction3, DirectionAndLengthSafe_Func_Output_Length3, DirectionAndLengthSafe_Func_Output_BelowThreshold3, Context);
+	DirectionAndLengthSafe_Func_(Result217, Constant242, Constant243, Constant244, DirectionAndLengthSafe_Func_Output_Direction3, DirectionAndLengthSafe_Func_Output_Length3, DirectionAndLengthSafe_Func_Output_BelowThreshold3, Context);
 	Context.Map.Grande.BeamStart = Context.Map.Local.BeamEmitterSetup.BeamStart;
 	Context.Map.Grande.BeamStartTangent = Context.Map.Local.BeamEmitterSetup.BeamStartTangent;
 	Context.Map.Grande.BeamEnd = Context.Map.Local.BeamEmitterSetup.BeamEnd;
 	Context.Map.Grande.BeamEndTangent = Context.Map.Local.BeamEmitterSetup.BeamEndTangent;
 	Context.Map.Grande.UseBeamTangents = Context.Map.BeamEmitterSetup.UseBeamTangents;
 	Context.Map.Grande.BeamStartEndLength = Context.Map.Local.BeamEmitterSetup.BeamStartEndLength;
-	Context.Map.Grande.BeamVector = Result219;
+	Context.Map.Grande.BeamVector = Result217;
 	Context.Map.Grande.BeamDirection = DirectionAndLengthSafe_Func_Output_Direction3;
-	bool Result220 = NiagaraAll(Context.Map.Grande.LoopCount > Context.Map.Grande.BeamID);
-	int Constant254 = -1;
+	bool Result218 = NiagaraAll(Context.Map.Grande.LoopCount > Context.Map.Grande.BeamID);
+	int Constant245 = -1;
 	int int32_IfResult1;
-	if(Result220)
+	if(Result218)
 	{
 	int32_IfResult1 = Context.Map.Grande.LoopCount;
 	}
 	else
 	{
-	int32_IfResult1 = Constant254;
+	int32_IfResult1 = Constant245;
 	}
 	Context.Map.Grande.BeamID = int32_IfResult1;
 }
@@ -3089,670 +2887,17 @@ void Grande_Func_(inout FSimulationContext Context)
 	UniformRangedFloat002_Grande_Func_(UniformRangedFloat002_Grande_Func_Output_UniformRangedFloat, Context);
 	Context.Map.RandomVector.VectorScale = UniformRangedFloat001_Grande_Func_Output_UniformRangedFloat;
 	Context.Map.RandomVector001.VectorScale = UniformRangedFloat002_Grande_Func_Output_UniformRangedFloat;
-	float3 Constant212 = float3(0,0,0);
-	bool Constant213 = true;
+	bool Constant212 = true;
 	float3 RandomVector_Grande_Func_Output_RandomVector;
 	RandomVector_Grande_Func_(RandomVector_Grande_Func_Output_RandomVector, Context);
 	float3 RandomVector001_Grande_Func_Output_RandomVector;
 	RandomVector001_Grande_Func_(RandomVector001_Grande_Func_Output_RandomVector, Context);
-	float3 UniformRangedVector_Grande_Func_Output_UniformRangedVector;
-	UniformRangedVector_Grande_Func_(UniformRangedVector_Grande_Func_Output_UniformRangedVector, Context);
-	Context.Map.BeamEmitterSetup.BeamStart = Constant212;
-	Context.Map.BeamEmitterSetup.UseBeamTangents = Constant213;
+	Context.Map.BeamEmitterSetup.UseBeamTangents = Constant212;
 	Context.Map.BeamEmitterSetup.BeamStartTangent = RandomVector_Grande_Func_Output_RandomVector;
 	Context.Map.BeamEmitterSetup.BeamEndTangent = RandomVector001_Grande_Func_Output_RandomVector;
-	Context.Map.BeamEmitterSetup.BeamEnd = UniformRangedVector_Grande_Func_Output_UniformRangedVector;
+	Context.Map.BeamEmitterSetup.BeamEnd = Context.Map.User.Lightning_EndPoint;
 	EnterStatScope(9 );
 	BeamEmitterSetup_Grande_Func_(Context);
-	ExitStatScope( );
-}
-
-void EmitterState_EmitterChangeState002_Peque_Func_(int In_NewState, bool In_Condition, int In_NewStateSource, inout FSimulationContext Context)
-{
-	int Constant266 = 3;
-	bool Result235 = NiagaraAll(Context.Map.Peque.ExecutionState != Constant266);
-	int Constant267 = 4;
-	bool Result236 = NiagaraAll(Context.Map.Peque.ExecutionState != Constant267);
-	bool Result237 = Result235 && Result236;
-	bool Result238 = In_Condition && Result237;
-	bool Result239 = NiagaraAll(Context.Map.Peque.ExecutionStateSource <= In_NewStateSource);
-	bool Result240 = Result238 && Result239;
-	int ENiagaraExecutionState_IfResult9;
-	int ENiagaraExecutionStateSource_IfResult9;
-	if(Result240)
-	{
-	ENiagaraExecutionState_IfResult9 = In_NewState;
-	ENiagaraExecutionStateSource_IfResult9 = In_NewStateSource;
-	}
-	else
-	{
-	ENiagaraExecutionState_IfResult9 = Context.Map.Peque.ExecutionState;
-	ENiagaraExecutionStateSource_IfResult9 = Context.Map.Peque.ExecutionStateSource;
-	}
-	Context.Map.Peque.ExecutionState = ENiagaraExecutionState_IfResult9;
-	Context.Map.Peque.ExecutionStateSource = ENiagaraExecutionStateSource_IfResult9;
-}
-
-void EmitterState_EmitterChangeState005_Peque_Func_(int In_NewState, bool In_Condition, int In_NewStateSource, inout FSimulationContext Context)
-{
-	int Constant272 = 3;
-	bool Result244 = NiagaraAll(Context.Map.Peque.ExecutionState != Constant272);
-	int Constant273 = 4;
-	bool Result245 = NiagaraAll(Context.Map.Peque.ExecutionState != Constant273);
-	bool Result246 = Result244 && Result245;
-	bool Result247 = In_Condition && Result246;
-	bool Result248 = NiagaraAll(Context.Map.Peque.ExecutionStateSource <= In_NewStateSource);
-	bool Result249 = Result247 && Result248;
-	int ENiagaraExecutionState_IfResult10;
-	int ENiagaraExecutionStateSource_IfResult10;
-	if(Result249)
-	{
-	ENiagaraExecutionState_IfResult10 = In_NewState;
-	ENiagaraExecutionStateSource_IfResult10 = In_NewStateSource;
-	}
-	else
-	{
-	ENiagaraExecutionState_IfResult10 = Context.Map.Peque.ExecutionState;
-	ENiagaraExecutionStateSource_IfResult10 = Context.Map.Peque.ExecutionStateSource;
-	}
-	Context.Map.Peque.ExecutionState = ENiagaraExecutionState_IfResult10;
-	Context.Map.Peque.ExecutionStateSource = ENiagaraExecutionStateSource_IfResult10;
-}
-
-void EmitterState_EmitterChangeState003_Peque_Func_(int In_NewState, bool In_Condition, int In_NewStateSource, inout FSimulationContext Context)
-{
-	int Constant278 = 3;
-	bool Result254 = NiagaraAll(Context.Map.Peque.ExecutionState != Constant278);
-	int Constant279 = 4;
-	bool Result255 = NiagaraAll(Context.Map.Peque.ExecutionState != Constant279);
-	bool Result256 = Result254 && Result255;
-	bool Result257 = In_Condition && Result256;
-	bool Result258 = NiagaraAll(Context.Map.Peque.ExecutionStateSource <= In_NewStateSource);
-	bool Result259 = Result257 && Result258;
-	int ENiagaraExecutionState_IfResult11;
-	int ENiagaraExecutionStateSource_IfResult11;
-	if(Result259)
-	{
-	ENiagaraExecutionState_IfResult11 = In_NewState;
-	ENiagaraExecutionStateSource_IfResult11 = In_NewStateSource;
-	}
-	else
-	{
-	ENiagaraExecutionState_IfResult11 = Context.Map.Peque.ExecutionState;
-	ENiagaraExecutionStateSource_IfResult11 = Context.Map.Peque.ExecutionStateSource;
-	}
-	Context.Map.Peque.ExecutionState = ENiagaraExecutionState_IfResult11;
-	Context.Map.Peque.ExecutionStateSource = ENiagaraExecutionStateSource_IfResult11;
-}
-
-void EmitterState_Peque_Func_(inout FSimulationContext Context)
-{
-	Context.Map.Local.EmitterState.PreviousEmitterState = Context.Map.Peque.ExecutionState;
-	float Constant255 = 0.016667;
-	float Result221 = max(Context.Map.Constants.Peque.EmitterState.LoopDuration, Constant255);
-	Context.Map.Local.EmitterState.LoopDuration = Result221;
-	float Constant256 = 0;
-	bool Result222 = NiagaraAll(Context.Map.Peque.Age == Constant256);
-	float Duration_IfResult3;
-	if(Result222)
-	{
-	Duration_IfResult3 = Context.Map.Local.EmitterState.LoopDuration;
-	}
-	else
-	{
-	Duration_IfResult3 = Context.Map.Peque.CurrentLoopDuration;
-	}
-	float Constant257 = 0;
-	Context.Map.Peque.CurrentLoopDuration = Duration_IfResult3;
-	Context.Map.EmitterState.LoopDelay = Constant257;
-	float Result223 = Context.Map.Peque.Age + Context.Map.Engine.DeltaTime;
-	float Result224 = Context.Map.Engine.DeltaTime + Context.Map.Peque.LoopedAge;
-	float Result225 = Result224 / Context.Map.Peque.CurrentLoopDuration;
-	int Count3;
-	Count3 = Result225;
-	int Constant258 = 0;
-	int Result226 = max(Count3, Constant258);
-	float Result227 = Result226 * Context.Map.Peque.CurrentLoopDuration;
-	float Result228 = Result224 - Result227;
-	int Constant259 = 0;
-	bool Result229 = NiagaraAll(Result226 > Constant259);
-	int Result230 = Result226 + Context.Map.Peque.LoopCount;
-	Context.Map.Peque.Age = Result223;
-	Context.Map.Peque.LoopedAge = Result228;
-	Context.Map.Local.EmitterState.LoopCountIncreased = Result229;
-	Context.Map.Peque.LoopCount = Result230;
-	bool Constant260 = false;
-	Context.Map.EmitterState.RecalculateDurationEachLoop = Constant260;
-	float float_IfResult7;
-	if(Context.Map.EmitterState.RecalculateDurationEachLoop)
-	{
-	float_IfResult7 = Context.Map.Local.EmitterState.LoopDuration;
-	}
-	else
-	{
-	float_IfResult7 = Context.Map.Peque.CurrentLoopDuration;
-	}
-	float CurrentLoopDuration_IfResult3;
-	float LoopedAge_IfResult3;
-	if(Context.Map.Local.EmitterState.LoopCountIncreased)
-	{
-	CurrentLoopDuration_IfResult3 = float_IfResult7;
-	LoopedAge_IfResult3 = Context.Map.Peque.LoopedAge;
-	}
-	else
-	{
-	CurrentLoopDuration_IfResult3 = Context.Map.Peque.CurrentLoopDuration;
-	LoopedAge_IfResult3 = Context.Map.Peque.LoopedAge;
-	}
-	Context.Map.Peque.CurrentLoopDuration = CurrentLoopDuration_IfResult3;
-	Context.Map.Peque.LoopedAge = LoopedAge_IfResult3;
-	float Result231 = Context.Map.Peque.LoopedAge / Context.Map.Peque.CurrentLoopDuration;
-	Context.Map.Peque.NormalizedLoopAge = Result231;
-	float Constant261 = 0;
-	float Constant262 = 1.0001;
-	float Result232 = clamp(Context.Map.Engine.Owner.LODDistanceFraction,Constant261,Constant262);
-	Context.Map.Peque.Scalability.DistanceFraction = Result232;
-	int Constant263 = 0;
-	Context.Map.Transient.ScalabilityEmitterExecutionState = Constant263;
-	int Constant264 = 0;
-	bool Result233 = NiagaraAll(Context.Map.Engine.Peque.NumParticles == Constant264);
-	Context.Map.Local.EmitterState.NoActiveEmitterParticles = Result233;
-	int Constant265 = 0;
-	bool Result234 = NiagaraAll(Context.Map.System.ExecutionStateSource == Constant265);
-	EmitterState_EmitterChangeState002_Peque_Func_(Context.Map.System.ExecutionState, Result234, Context.Map.System.ExecutionStateSource, Context);
-	int Constant268 = 1;
-	int Constant269 = 0;
-	bool Result241 = NiagaraAll(Context.Map.System.ExecutionState != Constant269);
-	int Constant270 = 2;
-	bool Result242 = NiagaraAll(Context.Map.System.ExecutionStateSource == Constant270);
-	bool Result243 = Result241 && Result242;
-	int Constant271 = 1;
-	EmitterState_EmitterChangeState005_Peque_Func_(Constant268, Result243, Constant271, Context);
-	int Constant274 = 3;
-	int Constant275 = 0;
-	bool Result250 = NiagaraAll(Context.Map.Peque.ExecutionState != Constant275);
-	int Constant276 = 0;
-	bool Result251 = NiagaraAll(Context.Map.Peque.ExecutionStateSource != Constant276);
-	bool Result252 = Result250 && Result251;
-	bool Result253 = Context.Map.Local.EmitterState.NoActiveEmitterParticles && Result252;
-	int Constant277 = 3;
-	EmitterState_EmitterChangeState003_Peque_Func_(Constant274, Result253, Constant277, Context);
-}
-
-void UniformRangedInt_Peque_Func_(out int Out_UniformRangedInt, inout FSimulationContext Context)
-{
-	bool Constant280 = false;
-	Context.Map.UniformRangedInt.OverrideRandomness = Constant280;
-	int Constant281 = 0;
-	Context.Map.UniformRangedInt.RandomnessMode = Constant281;
-	bool Constant282 = false;
-	Context.Map.UniformRangedInt.OverrideSeed = Constant282;
-	bool Constant283 = false;
-	Context.Map.UniformRangedInt.FixedRandomSeed = Constant283;
-	int Constant284 = 0;
-	bool Constant285 = false;
-	int Mode_IfResult13;
-	bool Override_IfResult13;
-	if(Context.Map.UniformRangedInt.OverrideRandomness)
-	{
-	Mode_IfResult13 = Context.Map.UniformRangedInt.RandomnessMode;
-	Override_IfResult13 = Context.Map.UniformRangedInt.OverrideSeed;
-	}
-	else
-	{
-	Mode_IfResult13 = Constant284;
-	Override_IfResult13 = Constant285;
-	}
-	int RandomRangeInteger_Func_Output_Result2;
-	RandomRangeInteger_Func_(Context.Map.Constants.Peque.UniformRangedInt.Minimum, Context.Map.Constants.Peque.UniformRangedInt.Maximum, Context.Map.Constants.Peque.UniformRangedInt.RandomSeed, Mode_IfResult13, Override_IfResult13, Context.Map.UniformRangedInt.FixedRandomSeed, RandomRangeInteger_Func_Output_Result2, Context);
-	Out_UniformRangedInt = RandomRangeInteger_Func_Output_Result2;
-}
-
-void SpawnBurst_Instantaneous_Peque_Func_(inout FSimulationContext Context)
-{
-	Context.Map.SpawnBurst_Instantaneous.Age = Context.Map.Peque.LoopedAge;
-	float Result260 = Context.Map.SpawnBurst_Instantaneous.Age - Context.Map.Engine.DeltaTime;
-	float Result261 = Context.Map.Constants.Peque.SpawnBurst_Instantaneous.SpawnTime - Result260;
-	float Constant286 = 0;
-	float Output17;
-	Output17 = Constant286;
-	bool Result262 = NiagaraAll(Result261 >= Output17);
-	float Result263 = Context.Map.Constants.Peque.SpawnBurst_Instantaneous.SpawnTime - Context.Map.SpawnBurst_Instantaneous.Age;
-	bool Result264 = NiagaraAll(Result263 < Output17);
-	bool Result265 = Result262 && Result264;
-	int Constant287 = 0;
-	bool Result266 = NiagaraAll(Context.Map.SpawnBurst_Instantaneous.SpawnCount == Constant287);
-	float Constant288 = 0;
-	float Result267 = Context.Map.SpawnBurst_Instantaneous.SpawnCount * Context.Map.Transient.ScalabilityEmitterSpawnCountScale * Context.Map.Engine.Peque.SpawnCountScale;
-	float Constant289 = 1;
-	float Result268 = max(Result267, Constant289);
-	float float_IfResult8;
-	if(Result266)
-	{
-	float_IfResult8 = Constant288;
-	}
-	else
-	{
-	float_IfResult8 = Result268;
-	}
-	float Constant290 = 0;
-	NiagaraSpawnInfo Output18;
-	Output18.Count = float_IfResult8;
-	Output18.InterpStartDt = Result261;
-	Output18.IntervalDt = Constant290;
-	Output18.SpawnGroup = Context.Map.Constants.Peque.SpawnBurst_Instantaneous.SpawnGroup;
-	int Constant291 = 0;
-	float Constant292 = 0;
-	float Constant293 = 0;
-	NiagaraSpawnInfo Output19;
-	Output19.Count = Constant291;
-	Output19.InterpStartDt = Constant292;
-	Output19.SpawnGroup = Context.Map.Constants.Peque.SpawnBurst_Instantaneous.SpawnGroup;
-	Output19.IntervalDt = Constant293;
-	NiagaraSpawnInfo SpawnInfo_IfResult2;
-	if(Result265)
-	{
-	SpawnInfo_IfResult2 = Output18;
-	}
-	else
-	{
-	SpawnInfo_IfResult2 = Output19;
-	}
-	Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst = SpawnInfo_IfResult2;
-	bool Result269 = NiagaraAll(Context.Map.Peque.LoopedAge <= Context.Map.Constants.Peque.SpawnBurst_Instantaneous.SpawnTime);
-	bool Result270 = Context.Map.Transient.SpawningbCanEverSpawn || Result269;
-	Context.Map.Transient.SpawningbCanEverSpawn = Result270;
-}
-
-void UniformRangedFloat001_Peque_Func_(out float Out_UniformRangedFloat, inout FSimulationContext Context)
-{
-	bool Constant294 = false;
-	Context.Map.UniformRangedFloat001.OverrideRandomness = Constant294;
-	int Constant295 = 0;
-	Context.Map.UniformRangedFloat001.RandomnessMode = Constant295;
-	bool Constant296 = false;
-	Context.Map.UniformRangedFloat001.OverrideSeed = Constant296;
-	bool Constant297 = false;
-	Context.Map.UniformRangedFloat001.FixedRandomSeed = Constant297;
-	int Constant298 = 0;
-	bool Constant299 = false;
-	int Mode_IfResult14;
-	bool Override_IfResult14;
-	if(Context.Map.UniformRangedFloat001.OverrideRandomness)
-	{
-	Mode_IfResult14 = Context.Map.UniformRangedFloat001.RandomnessMode;
-	Override_IfResult14 = Context.Map.UniformRangedFloat001.OverrideSeed;
-	}
-	else
-	{
-	Mode_IfResult14 = Constant298;
-	Override_IfResult14 = Constant299;
-	}
-	float RandomRangeFloat_Func_Output_Result9;
-	RandomRangeFloat_Func_(Context.Map.Constants.Peque.UniformRangedFloat001.Minimum, Context.Map.Constants.Peque.UniformRangedFloat001.Maximum, Context.Map.Constants.Peque.UniformRangedFloat001.RandomSeed, Mode_IfResult14, Override_IfResult14, Context.Map.UniformRangedFloat001.FixedRandomSeed, RandomRangeFloat_Func_Output_Result9, Context);
-	Out_UniformRangedFloat = RandomRangeFloat_Func_Output_Result9;
-}
-
-void UniformRangedFloat002_Peque_Func_(out float Out_UniformRangedFloat, inout FSimulationContext Context)
-{
-	bool Constant300 = false;
-	Context.Map.UniformRangedFloat002.OverrideRandomness = Constant300;
-	int Constant301 = 0;
-	Context.Map.UniformRangedFloat002.RandomnessMode = Constant301;
-	bool Constant302 = false;
-	Context.Map.UniformRangedFloat002.OverrideSeed = Constant302;
-	bool Constant303 = false;
-	Context.Map.UniformRangedFloat002.FixedRandomSeed = Constant303;
-	int Constant304 = 0;
-	bool Constant305 = false;
-	int Mode_IfResult15;
-	bool Override_IfResult15;
-	if(Context.Map.UniformRangedFloat002.OverrideRandomness)
-	{
-	Mode_IfResult15 = Context.Map.UniformRangedFloat002.RandomnessMode;
-	Override_IfResult15 = Context.Map.UniformRangedFloat002.OverrideSeed;
-	}
-	else
-	{
-	Mode_IfResult15 = Constant304;
-	Override_IfResult15 = Constant305;
-	}
-	float RandomRangeFloat_Func_Output_Result10;
-	RandomRangeFloat_Func_(Context.Map.Constants.Peque.UniformRangedFloat002.Minimum, Context.Map.Constants.Peque.UniformRangedFloat002.Maximum, Context.Map.Constants.Peque.UniformRangedFloat002.RandomSeed, Mode_IfResult15, Override_IfResult15, Context.Map.UniformRangedFloat002.FixedRandomSeed, RandomRangeFloat_Func_Output_Result10, Context);
-	Out_UniformRangedFloat = RandomRangeFloat_Func_Output_Result10;
-}
-
-void RandomVector_NF_TransformVector_Peque_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context)
-{
-	bool Constant312 = true;
-	float4x4 Matrix_IfResult7;
-	float4x4 Matrix001_IfResult6;
-	if(In_ApplyScale)
-	{
-	Matrix_IfResult7 = Context.Map.Engine.Owner.SystemLocalToWorld;
-	Matrix001_IfResult6 = Context.Map.Engine.Owner.SystemWorldToLocal;
-	}
-	else
-	{
-	Matrix_IfResult7 = Context.Map.Engine.Owner.SystemLocalToWorldNoScale;
-	Matrix001_IfResult6 = Context.Map.Engine.Owner.SystemWorldToLocalNoScale;
-	}
-	bool TransformBase_Func_Output_bUseOriginal6;
-	float4x4 TransformBase_Func_Output_OutTransform6;
-	TransformBase_Func_(In_SourceSpace, In_DestinationSpace, Matrix_IfResult7, Matrix001_IfResult6, Constant312, TransformBase_Func_Output_bUseOriginal6, TransformBase_Func_Output_OutTransform6, Context);
-	float3 Result271 = mul(float4(In_InVector,0.0),TransformBase_Func_Output_OutTransform6).xyz;
-	float3 Vector_IfResult16;
-	if(TransformBase_Func_Output_bUseOriginal6)
-	{
-	Vector_IfResult16 = In_InVector;
-	}
-	else
-	{
-	Vector_IfResult16 = Result271;
-	}
-	Out_OutVector = Vector_IfResult16;
-}
-
-void RandomVector_Peque_Func_(out float3 Out_RandomVector, inout FSimulationContext Context)
-{
-	bool Constant308 = false;
-	Context.Map.RandomVector.ConstraintoAxis = Constant308;
-	int Constant309 = 2;
-	int Constant310 = 0;
-	bool Constant311 = false;
-	float3 RandomVector_NF_TransformVector_Peque_Func_Output_OutVector;
-	RandomVector_NF_TransformVector_Peque_Func_(Context.Map.Constants.Peque.RandomVector.ConstraintVector, Constant309, Constant310, Constant311, RandomVector_NF_TransformVector_Peque_Func_Output_OutVector, Context);
-	bool Constant313 = false;
-	Context.Map.RandomVector.OverrideRandomness = Constant313;
-	int Constant314 = 0;
-	Context.Map.RandomVector.RandomnessMode = Constant314;
-	bool Constant315 = false;
-	Context.Map.RandomVector.OverrideSeed = Constant315;
-	bool Constant316 = false;
-	Context.Map.RandomVector.FixedRandomSeed = Constant316;
-	int Constant317 = 0;
-	bool Constant318 = false;
-	int Mode_IfResult16;
-	bool Override_IfResult16;
-	if(Context.Map.RandomVector.OverrideRandomness)
-	{
-	Mode_IfResult16 = Context.Map.RandomVector.RandomnessMode;
-	Override_IfResult16 = Context.Map.RandomVector.OverrideSeed;
-	}
-	else
-	{
-	Mode_IfResult16 = Constant317;
-	Override_IfResult16 = Constant318;
-	}
-	float3 RandomUnitVector_Func_Output_UnitVector3D4;
-	float2 RandomUnitVector_Func_Output_UnitVector2D4;
-	RandomUnitVector_Func_(Context.Map.Constants.Peque.RandomVector.RandomSeed, Mode_IfResult16, Override_IfResult16, Context.Map.RandomVector.FixedRandomSeed, RandomUnitVector_Func_Output_UnitVector3D4, RandomUnitVector_Func_Output_UnitVector2D4, Context);
-	float Result272 = dot(RandomVector_NF_TransformVector_Peque_Func_Output_OutVector,RandomUnitVector_Func_Output_UnitVector3D4);
-	float Result273 = sign(Result272);
-	float3 Result274 = Result273 * RandomUnitVector_Func_Output_UnitVector3D4;
-	float3 Vector_IfResult17;
-	if(Context.Map.RandomVector.ConstraintoAxis)
-	{
-	Vector_IfResult17 = Result274;
-	}
-	else
-	{
-	Vector_IfResult17 = RandomUnitVector_Func_Output_UnitVector3D4;
-	}
-	float3 Result275 = Context.Map.RandomVector.VectorScale * Vector_IfResult17;
-	Out_RandomVector = Result275;
-}
-
-void RandomVector001_NF_TransformVector_Peque_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context)
-{
-	bool Constant323 = true;
-	float4x4 Matrix_IfResult8;
-	float4x4 Matrix001_IfResult7;
-	if(In_ApplyScale)
-	{
-	Matrix_IfResult8 = Context.Map.Engine.Owner.SystemLocalToWorld;
-	Matrix001_IfResult7 = Context.Map.Engine.Owner.SystemWorldToLocal;
-	}
-	else
-	{
-	Matrix_IfResult8 = Context.Map.Engine.Owner.SystemLocalToWorldNoScale;
-	Matrix001_IfResult7 = Context.Map.Engine.Owner.SystemWorldToLocalNoScale;
-	}
-	bool TransformBase_Func_Output_bUseOriginal7;
-	float4x4 TransformBase_Func_Output_OutTransform7;
-	TransformBase_Func_(In_SourceSpace, In_DestinationSpace, Matrix_IfResult8, Matrix001_IfResult7, Constant323, TransformBase_Func_Output_bUseOriginal7, TransformBase_Func_Output_OutTransform7, Context);
-	float3 Result276 = mul(float4(In_InVector,0.0),TransformBase_Func_Output_OutTransform7).xyz;
-	float3 Vector_IfResult18;
-	if(TransformBase_Func_Output_bUseOriginal7)
-	{
-	Vector_IfResult18 = In_InVector;
-	}
-	else
-	{
-	Vector_IfResult18 = Result276;
-	}
-	Out_OutVector = Vector_IfResult18;
-}
-
-void RandomVector001_Peque_Func_(out float3 Out_RandomVector, inout FSimulationContext Context)
-{
-	bool Constant319 = false;
-	Context.Map.RandomVector001.ConstraintoAxis = Constant319;
-	int Constant320 = 2;
-	int Constant321 = 0;
-	bool Constant322 = false;
-	float3 RandomVector001_NF_TransformVector_Peque_Func_Output_OutVector;
-	RandomVector001_NF_TransformVector_Peque_Func_(Context.Map.Constants.Peque.RandomVector001.ConstraintVector, Constant320, Constant321, Constant322, RandomVector001_NF_TransformVector_Peque_Func_Output_OutVector, Context);
-	bool Constant324 = false;
-	Context.Map.RandomVector001.OverrideRandomness = Constant324;
-	int Constant325 = 0;
-	Context.Map.RandomVector001.RandomnessMode = Constant325;
-	bool Constant326 = false;
-	Context.Map.RandomVector001.OverrideSeed = Constant326;
-	bool Constant327 = false;
-	Context.Map.RandomVector001.FixedRandomSeed = Constant327;
-	int Constant328 = 0;
-	bool Constant329 = false;
-	int Mode_IfResult17;
-	bool Override_IfResult17;
-	if(Context.Map.RandomVector001.OverrideRandomness)
-	{
-	Mode_IfResult17 = Context.Map.RandomVector001.RandomnessMode;
-	Override_IfResult17 = Context.Map.RandomVector001.OverrideSeed;
-	}
-	else
-	{
-	Mode_IfResult17 = Constant328;
-	Override_IfResult17 = Constant329;
-	}
-	float3 RandomUnitVector_Func_Output_UnitVector3D5;
-	float2 RandomUnitVector_Func_Output_UnitVector2D5;
-	RandomUnitVector_Func_(Context.Map.Constants.Peque.RandomVector001.RandomSeed, Mode_IfResult17, Override_IfResult17, Context.Map.RandomVector001.FixedRandomSeed, RandomUnitVector_Func_Output_UnitVector3D5, RandomUnitVector_Func_Output_UnitVector2D5, Context);
-	float Result277 = dot(RandomVector001_NF_TransformVector_Peque_Func_Output_OutVector,RandomUnitVector_Func_Output_UnitVector3D5);
-	float Result278 = sign(Result277);
-	float3 Result279 = Result278 * RandomUnitVector_Func_Output_UnitVector3D5;
-	float3 Vector_IfResult19;
-	if(Context.Map.RandomVector001.ConstraintoAxis)
-	{
-	Vector_IfResult19 = Result279;
-	}
-	else
-	{
-	Vector_IfResult19 = RandomUnitVector_Func_Output_UnitVector3D5;
-	}
-	float3 Result280 = Context.Map.RandomVector001.VectorScale * Vector_IfResult19;
-	Out_RandomVector = Result280;
-}
-
-void UniformRangedVector_Peque_Func_(out float3 Out_UniformRangedVector, inout FSimulationContext Context)
-{
-	bool Constant330 = false;
-	Context.Map.UniformRangedVector.OverrideRandomness = Constant330;
-	int Constant331 = 0;
-	Context.Map.UniformRangedVector.RandomnessMode = Constant331;
-	bool Constant332 = false;
-	Context.Map.UniformRangedVector.OverrideSeed = Constant332;
-	bool Constant333 = false;
-	Context.Map.UniformRangedVector.FixedRandomSeed = Constant333;
-	int Constant334 = 0;
-	bool Constant335 = false;
-	int Mode_IfResult18;
-	bool Override_IfResult18;
-	if(Context.Map.UniformRangedVector.OverrideRandomness)
-	{
-	Mode_IfResult18 = Context.Map.UniformRangedVector.RandomnessMode;
-	Override_IfResult18 = Context.Map.UniformRangedVector.OverrideSeed;
-	}
-	else
-	{
-	Mode_IfResult18 = Constant334;
-	Override_IfResult18 = Constant335;
-	}
-	float3 RandomRangeFloat_Func_Output_Result11;
-	RandomRangeFloat_Func_(Context.Map.Constants.Peque.UniformRangedVector.Minimum, Context.Map.Constants.Peque.UniformRangedVector.Maximum, Context.Map.Constants.Peque.UniformRangedVector.RandomSeed, Mode_IfResult18, Override_IfResult18, Context.Map.UniformRangedVector.FixedRandomSeed, RandomRangeFloat_Func_Output_Result11, Context);
-	Out_UniformRangedVector = RandomRangeFloat_Func_Output_Result11;
-}
-
-void BeamEmitterSetup_NF_TransformVector_Peque_Func_(float3 In_InVector, int In_SourceSpace, int In_DestinationSpace, bool In_ApplyScale, out float3 Out_OutVector, inout FSimulationContext Context)
-{
-	bool Constant342 = true;
-	float4x4 Matrix_IfResult9;
-	float4x4 Matrix001_IfResult8;
-	if(In_ApplyScale)
-	{
-	Matrix_IfResult9 = Context.Map.Engine.Owner.SystemLocalToWorld;
-	Matrix001_IfResult8 = Context.Map.Engine.Owner.SystemWorldToLocal;
-	}
-	else
-	{
-	Matrix_IfResult9 = Context.Map.Engine.Owner.SystemLocalToWorldNoScale;
-	Matrix001_IfResult8 = Context.Map.Engine.Owner.SystemWorldToLocalNoScale;
-	}
-	bool TransformBase_Func_Output_bUseOriginal8;
-	float4x4 TransformBase_Func_Output_OutTransform8;
-	TransformBase_Func_(In_SourceSpace, In_DestinationSpace, Matrix_IfResult9, Matrix001_IfResult8, Constant342, TransformBase_Func_Output_bUseOriginal8, TransformBase_Func_Output_OutTransform8, Context);
-	float3 Result282 = mul(float4(In_InVector,0.0),TransformBase_Func_Output_OutTransform8).xyz;
-	float3 Vector_IfResult20;
-	if(TransformBase_Func_Output_bUseOriginal8)
-	{
-	Vector_IfResult20 = In_InVector;
-	}
-	else
-	{
-	Vector_IfResult20 = Result282;
-	}
-	Out_OutVector = Vector_IfResult20;
-}
-
-void BeamEmitterSetup_Peque_Func_(inout FSimulationContext Context)
-{
-	float3 Result281 = Context.Map.BeamEmitterSetup.BeamStart - Context.Map.BeamEmitterSetup.BeamEnd;
-	float3 Constant336 = float3(0,0,1);
-	float Constant337 = 1e-05;
-	float Constant338 = 1;
-	float3 DirectionAndLengthSafe_Func_Output_Direction4;
-	float DirectionAndLengthSafe_Func_Output_Length4;
-	bool DirectionAndLengthSafe_Func_Output_BelowThreshold4;
-	DirectionAndLengthSafe_Func_(Result281, Constant336, Constant337, Constant338, DirectionAndLengthSafe_Func_Output_Direction4, DirectionAndLengthSafe_Func_Output_Length4, DirectionAndLengthSafe_Func_Output_BelowThreshold4, Context);
-	int Constant339 = 2;
-	int Constant340 = 0;
-	bool Constant341 = false;
-	float3 BeamEmitterSetup_NF_TransformVector_Peque_Func_Output_OutVector;
-	BeamEmitterSetup_NF_TransformVector_Peque_Func_(Context.Map.BeamEmitterSetup.BeamEnd, Constant339, Constant340, Constant341, BeamEmitterSetup_NF_TransformVector_Peque_Func_Output_OutVector, Context);
-	float3 Result283 = Context.Map.BeamEmitterSetup.BeamStart + BeamEmitterSetup_NF_TransformVector_Peque_Func_Output_OutVector;
-	Context.Map.Local.BeamEmitterSetup.BeamStart = Context.Map.BeamEmitterSetup.BeamStart;
-	Context.Map.Local.BeamEmitterSetup.BeamStartEndLength = DirectionAndLengthSafe_Func_Output_Length4;
-	Context.Map.Local.BeamEmitterSetup.BeamEnd = Result283;
-	bool Constant343 = false;
-	Context.Map.BeamEmitterSetup.AbsoluteStartTangent = Constant343;
-	float3 Result284 = Context.Map.BeamEmitterSetup.BeamStartTangent * Context.Map.Local.BeamEmitterSetup.BeamStartEndLength;
-	float3 Result285 = Context.Map.Local.BeamEmitterSetup.BeamStart + Result284;
-	float3 Vector_IfResult21;
-	if(Context.Map.BeamEmitterSetup.AbsoluteStartTangent)
-	{
-	Vector_IfResult21 = Context.Map.BeamEmitterSetup.BeamStartTangent;
-	}
-	else
-	{
-	Vector_IfResult21 = Result285;
-	}
-	bool Constant344 = false;
-	Context.Map.BeamEmitterSetup.AbsoluteEndTangent = Constant344;
-	float3 Result286 = Context.Map.Local.BeamEmitterSetup.BeamStartEndLength * Context.Map.BeamEmitterSetup.BeamEndTangent;
-	float3 Result287 = Result286 + Context.Map.Local.BeamEmitterSetup.BeamEnd;
-	float3 Vector_IfResult22;
-	if(Context.Map.BeamEmitterSetup.AbsoluteEndTangent)
-	{
-	Vector_IfResult22 = Context.Map.BeamEmitterSetup.BeamEndTangent;
-	}
-	else
-	{
-	Vector_IfResult22 = Result287;
-	}
-	Context.Map.Local.BeamEmitterSetup.BeamStartTangent = Vector_IfResult21;
-	Context.Map.Local.BeamEmitterSetup.BeamEndTangent = Vector_IfResult22;
-	float3 Result288 = Context.Map.Local.BeamEmitterSetup.BeamEnd - Context.Map.Local.BeamEmitterSetup.BeamStart;
-	float3 Constant345 = float3(0,0,1);
-	float Constant346 = 1e-05;
-	float Constant347 = 1;
-	float3 DirectionAndLengthSafe_Func_Output_Direction5;
-	float DirectionAndLengthSafe_Func_Output_Length5;
-	bool DirectionAndLengthSafe_Func_Output_BelowThreshold5;
-	DirectionAndLengthSafe_Func_(Result288, Constant345, Constant346, Constant347, DirectionAndLengthSafe_Func_Output_Direction5, DirectionAndLengthSafe_Func_Output_Length5, DirectionAndLengthSafe_Func_Output_BelowThreshold5, Context);
-	Context.Map.Peque.BeamStart = Context.Map.Local.BeamEmitterSetup.BeamStart;
-	Context.Map.Peque.BeamStartTangent = Context.Map.Local.BeamEmitterSetup.BeamStartTangent;
-	Context.Map.Peque.BeamEnd = Context.Map.Local.BeamEmitterSetup.BeamEnd;
-	Context.Map.Peque.BeamEndTangent = Context.Map.Local.BeamEmitterSetup.BeamEndTangent;
-	Context.Map.Peque.UseBeamTangents = Context.Map.BeamEmitterSetup.UseBeamTangents;
-	Context.Map.Peque.BeamStartEndLength = Context.Map.Local.BeamEmitterSetup.BeamStartEndLength;
-	Context.Map.Peque.BeamVector = Result288;
-	Context.Map.Peque.BeamDirection = DirectionAndLengthSafe_Func_Output_Direction5;
-	bool Result289 = NiagaraAll(Context.Map.Peque.LoopCount > Context.Map.Peque.BeamID);
-	int Constant348 = -1;
-	int int32_IfResult2;
-	if(Result289)
-	{
-	int32_IfResult2 = Context.Map.Peque.LoopCount;
-	}
-	else
-	{
-	int32_IfResult2 = Constant348;
-	}
-	Context.Map.Peque.BeamID = int32_IfResult2;
-}
-
-void Peque_Func_(inout FSimulationContext Context)
-{
-	EnterStatScope(11 );
-	EmitterState_Peque_Func_(Context);
-	ExitStatScope( );
-	int UniformRangedInt_Peque_Func_Output_UniformRangedInt;
-	UniformRangedInt_Peque_Func_(UniformRangedInt_Peque_Func_Output_UniformRangedInt, Context);
-	Context.Map.SpawnBurst_Instantaneous.SpawnCount = UniformRangedInt_Peque_Func_Output_UniformRangedInt;
-	EnterStatScope(12 );
-	SpawnBurst_Instantaneous_Peque_Func_(Context);
-	ExitStatScope( );
-	float UniformRangedFloat001_Peque_Func_Output_UniformRangedFloat;
-	UniformRangedFloat001_Peque_Func_(UniformRangedFloat001_Peque_Func_Output_UniformRangedFloat, Context);
-	float UniformRangedFloat002_Peque_Func_Output_UniformRangedFloat;
-	UniformRangedFloat002_Peque_Func_(UniformRangedFloat002_Peque_Func_Output_UniformRangedFloat, Context);
-	Context.Map.RandomVector.VectorScale = UniformRangedFloat001_Peque_Func_Output_UniformRangedFloat;
-	Context.Map.RandomVector001.VectorScale = UniformRangedFloat002_Peque_Func_Output_UniformRangedFloat;
-	float3 Constant306 = float3(0,0,0);
-	bool Constant307 = true;
-	float3 RandomVector_Peque_Func_Output_RandomVector;
-	RandomVector_Peque_Func_(RandomVector_Peque_Func_Output_RandomVector, Context);
-	float3 RandomVector001_Peque_Func_Output_RandomVector;
-	RandomVector001_Peque_Func_(RandomVector001_Peque_Func_Output_RandomVector, Context);
-	float3 UniformRangedVector_Peque_Func_Output_UniformRangedVector;
-	UniformRangedVector_Peque_Func_(UniformRangedVector_Peque_Func_Output_UniformRangedVector, Context);
-	Context.Map.BeamEmitterSetup.BeamStart = Constant306;
-	Context.Map.BeamEmitterSetup.UseBeamTangents = Constant307;
-	Context.Map.BeamEmitterSetup.BeamStartTangent = RandomVector_Peque_Func_Output_RandomVector;
-	Context.Map.BeamEmitterSetup.BeamEndTangent = RandomVector001_Peque_Func_Output_RandomVector;
-	Context.Map.BeamEmitterSetup.BeamEnd = UniformRangedVector_Peque_Func_Output_UniformRangedVector;
-	EnterStatScope(13 );
-	BeamEmitterSetup_Peque_Func_(Context);
 	ExitStatScope( );
 }
 
@@ -3789,14 +2934,11 @@ void Simulate(inout FSimulationContext Context)
 	EnterStatScope(6 );
 	Grande_Func_(Context);
 	ExitStatScope( );
-	EnterStatScope(10 );
-	Peque_Func_(Context);
-	ExitStatScope( );
 	ExitStatScope( );
 }
 void SimulateMain()
 {
-EnterStatScope(14 );
+EnterStatScope(10 );
 
 	FSimulationContext Context = (FSimulationContext)0;
 	Context.Map.Central.Age = InputDataFloat(0, 0);
@@ -3868,48 +3010,14 @@ EnterStatScope(14 );
 	Context.Map.Grande.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt = 0.0f;
 	Context.Map.Grande.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup = 0;
 	Context.Map.Grande.UseBeamTangents = InputDataBool(0, 68);
-	Context.Map.Peque.Age = InputDataFloat(0, 69);
-	Context.Map.Peque.BeamDirection.x = InputDataFloat(0, 70);
-	Context.Map.Peque.BeamDirection.y = InputDataFloat(0, 71);
-	Context.Map.Peque.BeamDirection.z = InputDataFloat(0, 72);
-	Context.Map.Peque.BeamEnd.x = InputDataFloat(0, 73);
-	Context.Map.Peque.BeamEnd.y = InputDataFloat(0, 74);
-	Context.Map.Peque.BeamEnd.z = InputDataFloat(0, 75);
-	Context.Map.Peque.BeamEndTangent.x = InputDataFloat(0, 76);
-	Context.Map.Peque.BeamEndTangent.y = InputDataFloat(0, 77);
-	Context.Map.Peque.BeamEndTangent.z = InputDataFloat(0, 78);
-	Context.Map.Peque.BeamID = InputDataInt(0, 79);
-	Context.Map.Peque.BeamStart.x = InputDataFloat(0, 80);
-	Context.Map.Peque.BeamStart.y = InputDataFloat(0, 81);
-	Context.Map.Peque.BeamStart.z = InputDataFloat(0, 82);
-	Context.Map.Peque.BeamStartEndLength = InputDataFloat(0, 83);
-	Context.Map.Peque.BeamStartTangent.x = InputDataFloat(0, 84);
-	Context.Map.Peque.BeamStartTangent.y = InputDataFloat(0, 85);
-	Context.Map.Peque.BeamStartTangent.z = InputDataFloat(0, 86);
-	Context.Map.Peque.BeamVector.x = InputDataFloat(0, 87);
-	Context.Map.Peque.BeamVector.y = InputDataFloat(0, 88);
-	Context.Map.Peque.BeamVector.z = InputDataFloat(0, 89);
-	Context.Map.Peque.CurrentLoopDuration = InputDataFloat(0, 90);
-	Context.Map.Peque.ExecutionState = InputDataInt(0, 91);
-	Context.Map.Peque.ExecutionStateSource = InputDataInt(0, 92);
-	Context.Map.Peque.LocalSpace = InputDataBool(0, 93);
-	Context.Map.Peque.LoopCount = InputDataInt(0, 94);
-	Context.Map.Peque.LoopedAge = InputDataFloat(0, 95);
-	Context.Map.Peque.NormalizedLoopAge = InputDataFloat(0, 96);
-	Context.Map.Peque.Scalability.DistanceFraction = InputDataFloat(0, 97);
-	Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.Count = 0;
-	Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.InterpStartDt = 0.0f;
-	Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt = 0.0f;
-	Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup = 0;
-	Context.Map.Peque.UseBeamTangents = InputDataBool(0, 102);
-	Context.Map.System.Age = InputDataFloat(0, 103);
-	Context.Map.System.bCompleteOnInactive = InputDataBool(0, 104);
-	Context.Map.System.CurrentLoopDuration = InputDataFloat(0, 105);
-	Context.Map.System.ExecutionState = InputDataInt(0, 106);
-	Context.Map.System.ExecutionStateSource = InputDataInt(0, 107);
-	Context.Map.System.LoopCount = InputDataInt(0, 108);
-	Context.Map.System.LoopedAge = InputDataFloat(0, 109);
-	Context.Map.System.NormalizedLoopAge = InputDataFloat(0, 110);
+	Context.Map.System.Age = InputDataFloat(0, 69);
+	Context.Map.System.bCompleteOnInactive = InputDataBool(0, 70);
+	Context.Map.System.CurrentLoopDuration = InputDataFloat(0, 71);
+	Context.Map.System.ExecutionState = InputDataInt(0, 72);
+	Context.Map.System.ExecutionStateSource = InputDataInt(0, 73);
+	Context.Map.System.LoopCount = InputDataInt(0, 74);
+	Context.Map.System.LoopedAge = InputDataFloat(0, 75);
+	Context.Map.System.NormalizedLoopAge = InputDataFloat(0, 76);
 	Context.Map.Engine.Central.NumParticles = InputDataInt(1, 0);
 	Context.Map.Engine.Central.SpawnCountScale = InputDataFloat(1, 1);
 	Context.Map.Engine.Emitter.TotalSpawnedParticles = InputDataInt(1, 2);
@@ -3917,74 +3025,78 @@ EnterStatScope(14 );
 	Context.Map.Engine.Grande.SpawnCountScale = InputDataFloat(1, 4);
 	Context.Map.Engine.Owner.ExecutionState = InputDataInt(1, 5);
 	Context.Map.Engine.Owner.LODDistanceFraction = InputDataFloat(1, 6);
-	Context.Map.Engine.Owner.SystemLocalToWorld[0][0] = InputDataFloat(1, 7);
-	Context.Map.Engine.Owner.SystemLocalToWorld[0][1] = InputDataFloat(1, 8);
-	Context.Map.Engine.Owner.SystemLocalToWorld[0][2] = InputDataFloat(1, 9);
-	Context.Map.Engine.Owner.SystemLocalToWorld[0][3] = InputDataFloat(1, 10);
-	Context.Map.Engine.Owner.SystemLocalToWorld[1][0] = InputDataFloat(1, 11);
-	Context.Map.Engine.Owner.SystemLocalToWorld[1][1] = InputDataFloat(1, 12);
-	Context.Map.Engine.Owner.SystemLocalToWorld[1][2] = InputDataFloat(1, 13);
-	Context.Map.Engine.Owner.SystemLocalToWorld[1][3] = InputDataFloat(1, 14);
-	Context.Map.Engine.Owner.SystemLocalToWorld[2][0] = InputDataFloat(1, 15);
-	Context.Map.Engine.Owner.SystemLocalToWorld[2][1] = InputDataFloat(1, 16);
-	Context.Map.Engine.Owner.SystemLocalToWorld[2][2] = InputDataFloat(1, 17);
-	Context.Map.Engine.Owner.SystemLocalToWorld[2][3] = InputDataFloat(1, 18);
-	Context.Map.Engine.Owner.SystemLocalToWorld[3][0] = InputDataFloat(1, 19);
-	Context.Map.Engine.Owner.SystemLocalToWorld[3][1] = InputDataFloat(1, 20);
-	Context.Map.Engine.Owner.SystemLocalToWorld[3][2] = InputDataFloat(1, 21);
-	Context.Map.Engine.Owner.SystemLocalToWorld[3][3] = InputDataFloat(1, 22);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[0][0] = InputDataFloat(1, 23);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[0][1] = InputDataFloat(1, 24);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[0][2] = InputDataFloat(1, 25);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[0][3] = InputDataFloat(1, 26);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[1][0] = InputDataFloat(1, 27);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[1][1] = InputDataFloat(1, 28);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[1][2] = InputDataFloat(1, 29);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[1][3] = InputDataFloat(1, 30);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[2][0] = InputDataFloat(1, 31);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[2][1] = InputDataFloat(1, 32);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[2][2] = InputDataFloat(1, 33);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[2][3] = InputDataFloat(1, 34);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[3][0] = InputDataFloat(1, 35);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[3][1] = InputDataFloat(1, 36);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[3][2] = InputDataFloat(1, 37);
-	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[3][3] = InputDataFloat(1, 38);
-	Context.Map.Engine.Owner.SystemWorldToLocal[0][0] = InputDataFloat(1, 39);
-	Context.Map.Engine.Owner.SystemWorldToLocal[0][1] = InputDataFloat(1, 40);
-	Context.Map.Engine.Owner.SystemWorldToLocal[0][2] = InputDataFloat(1, 41);
-	Context.Map.Engine.Owner.SystemWorldToLocal[0][3] = InputDataFloat(1, 42);
-	Context.Map.Engine.Owner.SystemWorldToLocal[1][0] = InputDataFloat(1, 43);
-	Context.Map.Engine.Owner.SystemWorldToLocal[1][1] = InputDataFloat(1, 44);
-	Context.Map.Engine.Owner.SystemWorldToLocal[1][2] = InputDataFloat(1, 45);
-	Context.Map.Engine.Owner.SystemWorldToLocal[1][3] = InputDataFloat(1, 46);
-	Context.Map.Engine.Owner.SystemWorldToLocal[2][0] = InputDataFloat(1, 47);
-	Context.Map.Engine.Owner.SystemWorldToLocal[2][1] = InputDataFloat(1, 48);
-	Context.Map.Engine.Owner.SystemWorldToLocal[2][2] = InputDataFloat(1, 49);
-	Context.Map.Engine.Owner.SystemWorldToLocal[2][3] = InputDataFloat(1, 50);
-	Context.Map.Engine.Owner.SystemWorldToLocal[3][0] = InputDataFloat(1, 51);
-	Context.Map.Engine.Owner.SystemWorldToLocal[3][1] = InputDataFloat(1, 52);
-	Context.Map.Engine.Owner.SystemWorldToLocal[3][2] = InputDataFloat(1, 53);
-	Context.Map.Engine.Owner.SystemWorldToLocal[3][3] = InputDataFloat(1, 54);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[0][0] = InputDataFloat(1, 55);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[0][1] = InputDataFloat(1, 56);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[0][2] = InputDataFloat(1, 57);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[0][3] = InputDataFloat(1, 58);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[1][0] = InputDataFloat(1, 59);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[1][1] = InputDataFloat(1, 60);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[1][2] = InputDataFloat(1, 61);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[1][3] = InputDataFloat(1, 62);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[2][0] = InputDataFloat(1, 63);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[2][1] = InputDataFloat(1, 64);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[2][2] = InputDataFloat(1, 65);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[2][3] = InputDataFloat(1, 66);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[3][0] = InputDataFloat(1, 67);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[3][1] = InputDataFloat(1, 68);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[3][2] = InputDataFloat(1, 69);
-	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[3][3] = InputDataFloat(1, 70);
-	Context.Map.Engine.Peque.NumParticles = InputDataInt(1, 71);
-	Context.Map.Engine.Peque.SpawnCountScale = InputDataFloat(1, 72);
-	Context.Map.Engine.System.TickCount = InputDataInt(1, 73);
-	Context.Map.User.Central.RandomSeed = InputDataInt(1, 74);
+	Context.Map.Engine.Owner.Position.x = InputDataFloat(1, 7);
+	Context.Map.Engine.Owner.Position.y = InputDataFloat(1, 8);
+	Context.Map.Engine.Owner.Position.z = InputDataFloat(1, 9);
+	Context.Map.Engine.Owner.SystemLocalToWorld[0][0] = InputDataFloat(1, 10);
+	Context.Map.Engine.Owner.SystemLocalToWorld[0][1] = InputDataFloat(1, 11);
+	Context.Map.Engine.Owner.SystemLocalToWorld[0][2] = InputDataFloat(1, 12);
+	Context.Map.Engine.Owner.SystemLocalToWorld[0][3] = InputDataFloat(1, 13);
+	Context.Map.Engine.Owner.SystemLocalToWorld[1][0] = InputDataFloat(1, 14);
+	Context.Map.Engine.Owner.SystemLocalToWorld[1][1] = InputDataFloat(1, 15);
+	Context.Map.Engine.Owner.SystemLocalToWorld[1][2] = InputDataFloat(1, 16);
+	Context.Map.Engine.Owner.SystemLocalToWorld[1][3] = InputDataFloat(1, 17);
+	Context.Map.Engine.Owner.SystemLocalToWorld[2][0] = InputDataFloat(1, 18);
+	Context.Map.Engine.Owner.SystemLocalToWorld[2][1] = InputDataFloat(1, 19);
+	Context.Map.Engine.Owner.SystemLocalToWorld[2][2] = InputDataFloat(1, 20);
+	Context.Map.Engine.Owner.SystemLocalToWorld[2][3] = InputDataFloat(1, 21);
+	Context.Map.Engine.Owner.SystemLocalToWorld[3][0] = InputDataFloat(1, 22);
+	Context.Map.Engine.Owner.SystemLocalToWorld[3][1] = InputDataFloat(1, 23);
+	Context.Map.Engine.Owner.SystemLocalToWorld[3][2] = InputDataFloat(1, 24);
+	Context.Map.Engine.Owner.SystemLocalToWorld[3][3] = InputDataFloat(1, 25);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[0][0] = InputDataFloat(1, 26);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[0][1] = InputDataFloat(1, 27);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[0][2] = InputDataFloat(1, 28);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[0][3] = InputDataFloat(1, 29);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[1][0] = InputDataFloat(1, 30);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[1][1] = InputDataFloat(1, 31);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[1][2] = InputDataFloat(1, 32);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[1][3] = InputDataFloat(1, 33);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[2][0] = InputDataFloat(1, 34);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[2][1] = InputDataFloat(1, 35);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[2][2] = InputDataFloat(1, 36);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[2][3] = InputDataFloat(1, 37);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[3][0] = InputDataFloat(1, 38);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[3][1] = InputDataFloat(1, 39);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[3][2] = InputDataFloat(1, 40);
+	Context.Map.Engine.Owner.SystemLocalToWorldNoScale[3][3] = InputDataFloat(1, 41);
+	Context.Map.Engine.Owner.SystemWorldToLocal[0][0] = InputDataFloat(1, 42);
+	Context.Map.Engine.Owner.SystemWorldToLocal[0][1] = InputDataFloat(1, 43);
+	Context.Map.Engine.Owner.SystemWorldToLocal[0][2] = InputDataFloat(1, 44);
+	Context.Map.Engine.Owner.SystemWorldToLocal[0][3] = InputDataFloat(1, 45);
+	Context.Map.Engine.Owner.SystemWorldToLocal[1][0] = InputDataFloat(1, 46);
+	Context.Map.Engine.Owner.SystemWorldToLocal[1][1] = InputDataFloat(1, 47);
+	Context.Map.Engine.Owner.SystemWorldToLocal[1][2] = InputDataFloat(1, 48);
+	Context.Map.Engine.Owner.SystemWorldToLocal[1][3] = InputDataFloat(1, 49);
+	Context.Map.Engine.Owner.SystemWorldToLocal[2][0] = InputDataFloat(1, 50);
+	Context.Map.Engine.Owner.SystemWorldToLocal[2][1] = InputDataFloat(1, 51);
+	Context.Map.Engine.Owner.SystemWorldToLocal[2][2] = InputDataFloat(1, 52);
+	Context.Map.Engine.Owner.SystemWorldToLocal[2][3] = InputDataFloat(1, 53);
+	Context.Map.Engine.Owner.SystemWorldToLocal[3][0] = InputDataFloat(1, 54);
+	Context.Map.Engine.Owner.SystemWorldToLocal[3][1] = InputDataFloat(1, 55);
+	Context.Map.Engine.Owner.SystemWorldToLocal[3][2] = InputDataFloat(1, 56);
+	Context.Map.Engine.Owner.SystemWorldToLocal[3][3] = InputDataFloat(1, 57);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[0][0] = InputDataFloat(1, 58);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[0][1] = InputDataFloat(1, 59);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[0][2] = InputDataFloat(1, 60);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[0][3] = InputDataFloat(1, 61);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[1][0] = InputDataFloat(1, 62);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[1][1] = InputDataFloat(1, 63);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[1][2] = InputDataFloat(1, 64);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[1][3] = InputDataFloat(1, 65);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[2][0] = InputDataFloat(1, 66);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[2][1] = InputDataFloat(1, 67);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[2][2] = InputDataFloat(1, 68);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[2][3] = InputDataFloat(1, 69);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[3][0] = InputDataFloat(1, 70);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[3][1] = InputDataFloat(1, 71);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[3][2] = InputDataFloat(1, 72);
+	Context.Map.Engine.Owner.SystemWorldToLocalNoScale[3][3] = InputDataFloat(1, 73);
+	Context.Map.Engine.System.TickCount = InputDataInt(1, 74);
+	Context.Map.User.Central.RandomSeed = InputDataInt(1, 75);
+	Context.Map.User.Lightning_EndPoint.x = InputDataFloat(1, 76);
+	Context.Map.User.Lightning_EndPoint.y = InputDataFloat(1, 77);
+	Context.Map.User.Lightning_EndPoint.z = InputDataFloat(1, 78);
 	Context.Map.Constants.SystemState.LoopDelay = Constants_SystemState_LoopDelay;
 	Context.Map.Constants.SystemState.LoopDuration = Constants_SystemState_LoopDuration;
 	Context.Map.Engine.DeltaTime = Engine_DeltaTime;
@@ -4030,30 +3142,6 @@ EnterStatScope(14 );
 	Context.Map.Constants.Grande.RandomVector.RandomSeed = Constants_Grande_RandomVector_RandomSeed;
 	Context.Map.Constants.Grande.RandomVector001.ConstraintVector = Constants_Grande_RandomVector001_ConstraintVector;
 	Context.Map.Constants.Grande.RandomVector001.RandomSeed = Constants_Grande_RandomVector001_RandomSeed;
-	Context.Map.Constants.Grande.UniformRangedVector.Minimum = Constants_Grande_UniformRangedVector_Minimum;
-	Context.Map.Constants.Grande.UniformRangedVector.Maximum = Constants_Grande_UniformRangedVector_Maximum;
-	Context.Map.Constants.Grande.UniformRangedVector.RandomSeed = Constants_Grande_UniformRangedVector_RandomSeed;
-	Context.Map.Constants.Peque.EmitterState.LoopDuration = Constants_Peque_EmitterState_LoopDuration;
-	Context.Map.Constants.Peque.EmitterState.LoopDelay = Constants_Peque_EmitterState_LoopDelay;
-	Context.Map.Constants.Peque.UniformRangedInt.Minimum = Constants_Peque_UniformRangedInt_Minimum;
-	Context.Map.Constants.Peque.UniformRangedInt.Maximum = Constants_Peque_UniformRangedInt_Maximum;
-	Context.Map.Constants.Peque.UniformRangedInt.RandomSeed = Constants_Peque_UniformRangedInt_RandomSeed;
-	Context.Map.Constants.Peque.SpawnBurst_Instantaneous.SpawnTime = Constants_Peque_SpawnBurst_Instantaneous_SpawnTime;
-	Context.Map.Constants.Peque.SpawnBurst_Instantaneous.SpawnGroup = Constants_Peque_SpawnBurst_Instantaneous_SpawnGroup;
-	Context.Map.Constants.Peque.SpawnBurst_Instantaneous.SpawnProbability = Constants_Peque_SpawnBurst_Instantaneous_SpawnProbability;
-	Context.Map.Constants.Peque.UniformRangedFloat001.Minimum = Constants_Peque_UniformRangedFloat001_Minimum;
-	Context.Map.Constants.Peque.UniformRangedFloat001.Maximum = Constants_Peque_UniformRangedFloat001_Maximum;
-	Context.Map.Constants.Peque.UniformRangedFloat001.RandomSeed = Constants_Peque_UniformRangedFloat001_RandomSeed;
-	Context.Map.Constants.Peque.UniformRangedFloat002.Minimum = Constants_Peque_UniformRangedFloat002_Minimum;
-	Context.Map.Constants.Peque.UniformRangedFloat002.Maximum = Constants_Peque_UniformRangedFloat002_Maximum;
-	Context.Map.Constants.Peque.UniformRangedFloat002.RandomSeed = Constants_Peque_UniformRangedFloat002_RandomSeed;
-	Context.Map.Constants.Peque.RandomVector.ConstraintVector = Constants_Peque_RandomVector_ConstraintVector;
-	Context.Map.Constants.Peque.RandomVector.RandomSeed = Constants_Peque_RandomVector_RandomSeed;
-	Context.Map.Constants.Peque.RandomVector001.ConstraintVector = Constants_Peque_RandomVector001_ConstraintVector;
-	Context.Map.Constants.Peque.RandomVector001.RandomSeed = Constants_Peque_RandomVector001_RandomSeed;
-	Context.Map.Constants.Peque.UniformRangedVector.Minimum = Constants_Peque_UniformRangedVector_Minimum;
-	Context.Map.Constants.Peque.UniformRangedVector.Maximum = Constants_Peque_UniformRangedVector_Maximum;
-	Context.Map.Constants.Peque.UniformRangedVector.RandomSeed = Constants_Peque_UniformRangedVector_RandomSeed;
 	Context.Map.Emitter.RandomSeed = Emitter_RandomSeed;
 	ReadDataSets(Context);
 	Simulate(Context);
@@ -4129,48 +3217,14 @@ EnterStatScope(14 );
 	OutputDataFloat(0, 66, TmpWriteIndex, Context.Map.Grande.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt);
 	OutputDataInt(0, 67, TmpWriteIndex, Context.Map.Grande.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup);
 	OutputDataBool(0, 68, TmpWriteIndex, Context.Map.Grande.UseBeamTangents);
-	OutputDataFloat(0, 69, TmpWriteIndex, Context.Map.Peque.Age);
-	OutputDataFloat(0, 70, TmpWriteIndex, Context.Map.Peque.BeamDirection.x);
-	OutputDataFloat(0, 71, TmpWriteIndex, Context.Map.Peque.BeamDirection.y);
-	OutputDataFloat(0, 72, TmpWriteIndex, Context.Map.Peque.BeamDirection.z);
-	OutputDataFloat(0, 73, TmpWriteIndex, Context.Map.Peque.BeamEnd.x);
-	OutputDataFloat(0, 74, TmpWriteIndex, Context.Map.Peque.BeamEnd.y);
-	OutputDataFloat(0, 75, TmpWriteIndex, Context.Map.Peque.BeamEnd.z);
-	OutputDataFloat(0, 76, TmpWriteIndex, Context.Map.Peque.BeamEndTangent.x);
-	OutputDataFloat(0, 77, TmpWriteIndex, Context.Map.Peque.BeamEndTangent.y);
-	OutputDataFloat(0, 78, TmpWriteIndex, Context.Map.Peque.BeamEndTangent.z);
-	OutputDataInt(0, 79, TmpWriteIndex, Context.Map.Peque.BeamID);
-	OutputDataFloat(0, 80, TmpWriteIndex, Context.Map.Peque.BeamStart.x);
-	OutputDataFloat(0, 81, TmpWriteIndex, Context.Map.Peque.BeamStart.y);
-	OutputDataFloat(0, 82, TmpWriteIndex, Context.Map.Peque.BeamStart.z);
-	OutputDataFloat(0, 83, TmpWriteIndex, Context.Map.Peque.BeamStartEndLength);
-	OutputDataFloat(0, 84, TmpWriteIndex, Context.Map.Peque.BeamStartTangent.x);
-	OutputDataFloat(0, 85, TmpWriteIndex, Context.Map.Peque.BeamStartTangent.y);
-	OutputDataFloat(0, 86, TmpWriteIndex, Context.Map.Peque.BeamStartTangent.z);
-	OutputDataFloat(0, 87, TmpWriteIndex, Context.Map.Peque.BeamVector.x);
-	OutputDataFloat(0, 88, TmpWriteIndex, Context.Map.Peque.BeamVector.y);
-	OutputDataFloat(0, 89, TmpWriteIndex, Context.Map.Peque.BeamVector.z);
-	OutputDataFloat(0, 90, TmpWriteIndex, Context.Map.Peque.CurrentLoopDuration);
-	OutputDataInt(0, 91, TmpWriteIndex, Context.Map.Peque.ExecutionState);
-	OutputDataInt(0, 92, TmpWriteIndex, Context.Map.Peque.ExecutionStateSource);
-	OutputDataBool(0, 93, TmpWriteIndex, Context.Map.Peque.LocalSpace);
-	OutputDataInt(0, 94, TmpWriteIndex, Context.Map.Peque.LoopCount);
-	OutputDataFloat(0, 95, TmpWriteIndex, Context.Map.Peque.LoopedAge);
-	OutputDataFloat(0, 96, TmpWriteIndex, Context.Map.Peque.NormalizedLoopAge);
-	OutputDataFloat(0, 97, TmpWriteIndex, Context.Map.Peque.Scalability.DistanceFraction);
-	OutputDataInt(0, 98, TmpWriteIndex, Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.Count);
-	OutputDataFloat(0, 99, TmpWriteIndex, Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.InterpStartDt);
-	OutputDataFloat(0, 100, TmpWriteIndex, Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.IntervalDt);
-	OutputDataInt(0, 101, TmpWriteIndex, Context.Map.Peque.SpawnBurst_Instantaneous.SpawnBurst.SpawnGroup);
-	OutputDataBool(0, 102, TmpWriteIndex, Context.Map.Peque.UseBeamTangents);
-	OutputDataFloat(0, 103, TmpWriteIndex, Context.Map.System.Age);
-	OutputDataBool(0, 104, TmpWriteIndex, Context.Map.System.bCompleteOnInactive);
-	OutputDataFloat(0, 105, TmpWriteIndex, Context.Map.System.CurrentLoopDuration);
-	OutputDataInt(0, 106, TmpWriteIndex, Context.Map.System.ExecutionState);
-	OutputDataInt(0, 107, TmpWriteIndex, Context.Map.System.ExecutionStateSource);
-	OutputDataInt(0, 108, TmpWriteIndex, Context.Map.System.LoopCount);
-	OutputDataFloat(0, 109, TmpWriteIndex, Context.Map.System.LoopedAge);
-	OutputDataFloat(0, 110, TmpWriteIndex, Context.Map.System.NormalizedLoopAge);
+	OutputDataFloat(0, 69, TmpWriteIndex, Context.Map.System.Age);
+	OutputDataBool(0, 70, TmpWriteIndex, Context.Map.System.bCompleteOnInactive);
+	OutputDataFloat(0, 71, TmpWriteIndex, Context.Map.System.CurrentLoopDuration);
+	OutputDataInt(0, 72, TmpWriteIndex, Context.Map.System.ExecutionState);
+	OutputDataInt(0, 73, TmpWriteIndex, Context.Map.System.ExecutionStateSource);
+	OutputDataInt(0, 74, TmpWriteIndex, Context.Map.System.LoopCount);
+	OutputDataFloat(0, 75, TmpWriteIndex, Context.Map.System.LoopedAge);
+	OutputDataFloat(0, 76, TmpWriteIndex, Context.Map.System.NormalizedLoopAge);
 	}
 ExitStatScope( );
 }
